@@ -6,7 +6,9 @@ struct RootView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Text("Hello!")
+                if !showSignInView {
+                    TabBar(showSignInView: $showSignInView)
+                }
             }
         }
         .onAppear {
