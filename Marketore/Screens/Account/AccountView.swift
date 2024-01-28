@@ -27,8 +27,12 @@ struct AccountView: View {
                 HStack {
                     Spacer()
                     VStack {
-                        Text("AccountView")
+                        if let user = viewModel.user {
+                            Text("AccountView")
+                            Text("\(user.hasMarketProduct! ? "True" : "False")") // test
+                        }
                     }
+                    .foregroundStyle(.white)
                     Spacer()
                 }
                 .background(GeometryReader {
@@ -48,6 +52,9 @@ struct AccountView: View {
             .overlay {
                 customNavBar(offset: scrollOffset)
             }
+        }
+        .task {
+            try? await viewModel.loadUserData()
         }
     }
     
