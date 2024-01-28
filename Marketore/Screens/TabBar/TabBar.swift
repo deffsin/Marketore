@@ -1,7 +1,5 @@
 import SwiftUI
 
-let tabBackGroundColor = Color.init(white: 0.92)
-
 struct TabBar: View {
     @StateObject var marketViewModel = MarketViewModel()
     @StateObject var accountViewModel = AccountViewModel()
@@ -13,7 +11,7 @@ struct TabBar: View {
     
     var body: some View {
         ZStack {
-            tabBackGroundColor
+            Color(appColor: .whiteColor)
                 .ignoresSafeArea()
             
             ZStack {

@@ -59,7 +59,7 @@ fileprivate struct TabsLayoutView: View {
                     if isSelected {
                         Circle()
                             .shadow(radius: 12)
-                            .foregroundColor(.purple.opacity(0.8))
+                            .foregroundColor(Color(appColor: .purpleColor))
                             .background {
                                 Circle()
                                     .stroke(lineWidth: 11)
