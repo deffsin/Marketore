@@ -61,6 +61,7 @@
 		15893D4F2B66D07C006BD88C /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15893D4E2B66D07C006BD88C /* SettingsViewModel.swift */; };
 		15893D532B66D10E006BD88C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15893D522B66D10E006BD88C /* SettingsView.swift */; };
 		15893D572B66D68C006BD88C /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15893D562B66D68C006BD88C /* AppColor.swift */; };
+		15893D592B66F7C5006BD88C /* ViewOffsetKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15893D582B66F7C5006BD88C /* ViewOffsetKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +92,7 @@
 		15893D4E2B66D07C006BD88C /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		15893D522B66D10E006BD88C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		15893D562B66D68C006BD88C /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
+		15893D582B66F7C5006BD88C /* ViewOffsetKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewOffsetKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				1520DC6F2B65391A00C9EDAF /* SocialMediaButton.swift */,
+				15893D582B66F7C5006BD88C /* ViewOffsetKey.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -409,6 +412,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15893D532B66D10E006BD88C /* SettingsView.swift in Sources */,
+				15893D592B66F7C5006BD88C /* ViewOffsetKey.swift in Sources */,
 				15893D472B66D047006BD88C /* MarketViewModel.swift in Sources */,
 				1520DC6B2B65355300C9EDAF /* UserManagerError.swift in Sources */,
 				1520DC642B65352200C9EDAF /* UserManager.swift in Sources */,
