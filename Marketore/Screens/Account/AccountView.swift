@@ -23,16 +23,23 @@ struct AccountView: View {
     @ViewBuilder
     func buildMainContent() -> some View {
         ZStack {
+            Color.black.opacity(0.8)
+                .ignoresSafeArea(.all)
+            
             ScrollView {
                 HStack {
                     Spacer()
                     VStack {
                         if let user = viewModel.user {
-                            Text("AccountView")
-                            Text("\(user.hasMarketProduct! ? "True" : "False")") // test
+                            if user.hasMarketProduct! {
+                                contentIfUserHasMarketProduct()
+                            } else {
+                                contentIfUserDoesntHaveMarketProduct()
+                            }
                         }
                     }
                     .foregroundStyle(.white)
+                    .padding(.top, 10)
                     Spacer()
                 }
                 .background(GeometryReader {
@@ -42,7 +49,7 @@ struct AccountView: View {
             }
             .padding(.top, 50)
             .refreshable {
-                // refresh....
+                try? await viewModel.loadUserData()
             }
             .onPreferenceChange(ViewOffsetKey.self) { offset in
                 withAnimation {
@@ -107,6 +114,21 @@ struct AccountView: View {
         }
         .frame(height: 35)
         .frame(maxHeight: .infinity, alignment: .top)
+    }
+    
+    func contentIfUserHasMarketProduct() -> some View {
+        Text("AccountView")
+    }
+    
+    func contentIfUserDoesntHaveMarketProduct() -> some View {
+        VStack(alignment: .center) {
+            Text("Let's add your product to the market")
+                .font(.system(size: 21))
+            Text("Click on the button '+' in the upper right corner")
+                .font(.system(size: 12))
+                .opacity(0.8)
+        }
+        .foregroundStyle(.white)
     }
 
 }
