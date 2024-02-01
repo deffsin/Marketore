@@ -9,4 +9,11 @@ import SwiftUI
 
 class ChooseCategoryViewModel: ObservableObject {
     @Published var selectedTag: ProductCategories?
+    
+    var isTagSelected: Bool {
+        guard let tag = selectedTag?.rawValue.isEmpty else {
+            return false
+        }
+        return true
+    }
 }
