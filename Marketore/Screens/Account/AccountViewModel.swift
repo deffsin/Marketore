@@ -14,7 +14,6 @@ class AccountViewModel: ObservableObject {
     func navigateToAddProduct() async throws {
         DispatchQueue.main.async {
             self.isAddProduct = true
-            print("Navigate to add product")
         }
     }
     

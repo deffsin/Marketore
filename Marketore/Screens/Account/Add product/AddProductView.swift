@@ -21,31 +21,36 @@ struct AddProductView: View {
     
     @ViewBuilder
     func buildMainContent() -> some View {
-        ScrollView(.vertical) {
-            TagLayout(alignment: .center, spacing: 10) {
-                ForEach(viewModel.tags, id: \.self) { tag in
-                    tagView(tag, viewModel.selectedTag == tag ? Color(appColor: .purpleColor) : .gray)
-                        .onTapGesture {
-                            withAnimation(.easeInOut) {
-                                if viewModel.selectedTag == tag {
-                                    viewModel.selectedTag = nil
-                                } else {
-                                    viewModel.selectedTag = tag
+        ZStack {
+            Color.black.opacity(0.8)
+                .ignoresSafeArea(.all)
+            
+            ScrollView(.vertical) {
+                TagLayout(alignment: .center, spacing: 10) {
+                    ForEach(viewModel.tags, id: \.self) { tag in
+                        tagView(tag, viewModel.selectedTag == tag ? Color(appColor: .purpleColor) : .gray)
+                            .onTapGesture {
+                                withAnimation(.easeInOut) {
+                                    if viewModel.selectedTag == tag {
+                                        viewModel.selectedTag = nil
+                                    } else {
+                                        viewModel.selectedTag = tag
+                                    }
                                 }
                             }
-                        }
+                    }
                 }
             }
-        }
-        .padding(.top, 50)
-        .overlay {
-            customNavBar()
+            .padding(.top, 50)
+            .overlay {
+                customNavBar()
+            }
         }
     }
     func customNavBar() -> some View {
         return ZStack {
             Group {
-                Color(red: 0.06, green: 0.06, blue: 0.06)
+                Color(appColor: .darkGrayColor)
             }
             .ignoresSafeArea(.all)
             

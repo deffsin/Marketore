@@ -23,7 +23,7 @@ struct AccountView: View {
     @ViewBuilder
     func buildMainContent() -> some View {
         ZStack {
-            Color.black.opacity(0.8)
+            Color(appColor: .darkBackgroundColor)
                 .ignoresSafeArea(.all)
             
             ScrollView {
@@ -72,16 +72,11 @@ struct AccountView: View {
         let maxOffset: CGFloat = 20.0
         let limitedOffset = min(maxOffset, abs(offset)) * (offset < 0 ? -2 : 2)
         
-        let isDarkMode = colorScheme == .dark
         let isNegativeOffset = offset < 0
         
         return ZStack {
             Group {
-                if isDarkMode {
-                    isNegativeOffset ? Color(red: 0.10, green: 0.10, blue: 0.10) : Color(red: 0.06, green: 0.06, blue: 0.06)
-                } else {
-                    isNegativeOffset ? Color(red: 0.90, green: 0.90, blue: 0.90) : Color.white
-                }
+                isNegativeOffset ? Color(appColor: .lightGrayColor) : Color(appColor: .darkGrayColor)
             }
             .ignoresSafeArea(.all)
             
