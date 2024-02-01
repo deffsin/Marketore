@@ -1,5 +1,5 @@
 //
-//  AddProductView.swift
+//  ChooseCategoryView.swift
 //  Marketore
 //
 //  Created by Denis Sinitsa on 01.02.2024.
@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct AddProductView: View {
+struct ChooseCategoryView: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) var dismiss
-    @ObservedObject var viewModel: AddProductViewModel
+    @ObservedObject var viewModel: ChooseCategoryViewModel
     
     var body: some View {
         NavigationStack {
@@ -22,20 +22,16 @@ struct AddProductView: View {
     @ViewBuilder
     func buildMainContent() -> some View {
         ZStack {
-            Color.black.opacity(0.8)
+            Color(appColor: .darkBackgroundColor)
                 .ignoresSafeArea(.all)
             
             ScrollView(.vertical) {
                 TagLayout(alignment: .center, spacing: 10) {
-                    ForEach(viewModel.tags, id: \.self) { tag in
-                        tagView(tag, viewModel.selectedTag == tag ? Color(appColor: .purpleColor) : .gray)
+                    ForEach(ProductCategories.allCases) { tag in
+                        tagView(tag.rawValue, viewModel.selectedTag == tag ? Color(appColor: .purpleColor) : .gray)
                             .onTapGesture {
-                                withAnimation(.easeInOut) {
-                                    if viewModel.selectedTag == tag {
-                                        viewModel.selectedTag = nil
-                                    } else {
-                                        viewModel.selectedTag = tag
-                                    }
+                                withAnimation {
+                                    viewModel.selectedTag = tag
                                 }
                             }
                     }
@@ -97,5 +93,5 @@ struct AddProductView: View {
 }
 
 #Preview {
-    AddProductView(viewModel: AddProductViewModel())
+    ChooseCategoryView(viewModel: ChooseCategoryViewModel())
 }

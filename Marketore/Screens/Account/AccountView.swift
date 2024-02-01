@@ -64,7 +64,7 @@ struct AccountView: View {
             try? await viewModel.loadUserData()
         }
         .navigationDestination(isPresented: $viewModel.isAddProduct) {
-            AddProductView(viewModel: AddProductViewModel())
+            ChooseCategoryView(viewModel: ChooseCategoryViewModel())
         }
     }
     
