@@ -9,12 +9,12 @@ import SwiftUI
 
 class AccountViewModel: ObservableObject {
     @Published private(set) var user: UserModel? = nil
-    @Published var isSheet: Bool = false
+    @Published var isAddProduct: Bool = false
     
-    func addProductAndOpenSheet() async throws {
+    func navigateToAddProduct() async throws {
         DispatchQueue.main.async {
-            self.isSheet = true
-            print("Sheet is opened")
+            self.isAddProduct = true
+            print("Navigate to add product")
         }
     }
     

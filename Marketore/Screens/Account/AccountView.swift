@@ -63,8 +63,8 @@ struct AccountView: View {
         .task {
             try? await viewModel.loadUserData()
         }
-        .sheet(isPresented: $viewModel.isSheet) {
-            
+        .navigationDestination(isPresented: $viewModel.isAddProduct) {
+            AddProductView(viewModel: AddProductViewModel())
         }
     }
     
@@ -104,7 +104,7 @@ struct AccountView: View {
                 Button(action: {
                     Task {
                         do {
-                            try? await viewModel.addProductAndOpenSheet()
+                            try? await viewModel.navigateToAddProduct()
                         } catch {
                             
                         }
