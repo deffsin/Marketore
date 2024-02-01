@@ -63,6 +63,9 @@ struct AccountView: View {
         .task {
             try? await viewModel.loadUserData()
         }
+        .sheet(isPresented: $viewModel.isSheet) {
+            
+        }
     }
     
     func customNavBar(offset: CGFloat) -> some View {
@@ -98,7 +101,15 @@ struct AccountView: View {
                     
                 Spacer()
                 
-                Button(action: { }) {
+                Button(action: {
+                    Task {
+                        do {
+                            try? await viewModel.addProductAndOpenSheet()
+                        } catch {
+                            
+                        }
+                    }
+                }) {
                     Image(systemName: "plus")
                         .resizable()
                         .foregroundColor(.white)
@@ -125,12 +136,11 @@ struct AccountView: View {
             Text("Let's add your product to the market")
                 .font(.system(size: 21))
             Text("Click on the button '+' in the upper right corner")
-                .font(.system(size: 12))
+                .font(.system(size: 14))
                 .opacity(0.8)
         }
         .foregroundStyle(.white)
     }
-
 }
 
 #Preview {
