@@ -1,16 +1,16 @@
 //
-//  ChooseCategoryView.swift
+//  ChooseSubcategoryView.swift
 //  Marketore
 //
-//  Created by Denis Sinitsa on 01.02.2024.
+//  Created by Denis Sinitsa on 08.02.2024.
 //
 
 import SwiftUI
 
-struct ChooseCategoryView: View {
+struct ChooseSubcategoryView: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) var dismiss
-    @ObservedObject var viewModel: ChooseCategoryViewModel
+    @ObservedObject var viewModel: ChooseSubcategoryViewModel
     
     var body: some View {
         NavigationStack {
@@ -27,13 +27,24 @@ struct ChooseCategoryView: View {
             
             ScrollView(.vertical) {
                 TagLayout(alignment: .center, spacing: 10) {
-                    ForEach(ProductCategory.allCases, id: \.self) { tag in
-                        tagView(tag.rawValue, viewModel.selectedTag == tag ? Color(appColor: .purpleColor) : .gray)
-                            .onTapGesture {
-                                withAnimation {
-                                    viewModel.selectedTag = tag
+                    if viewModel.savedProductCategory == .computers {
+                        ForEach(ComputerSubcategory.allCases) { tag in
+                            tagView(tag.rawValue, viewModel.selectedTag == tag.rawValue ? Color(appColor: .purpleColor) : .gray)
+                                .onTapGesture {
+                                    withAnimation {
+                                        viewModel.selectedTag = tag.rawValue
+                                    }
                                 }
-                            }
+                        }
+                    } else if viewModel.savedProductCategory == .phones {
+                        ForEach(PhoneSubcategory.allCases) { tag in
+                            tagView(tag.rawValue, viewModel.selectedTag == tag.rawValue ? Color(appColor: .purpleColor) : .gray)
+                                .onTapGesture {
+                                    withAnimation {
+                                        viewModel.selectedTag = tag.rawValue
+                                    }
+                                }
+                        }
                     }
                 }
                 
@@ -45,16 +56,12 @@ struct ChooseCategoryView: View {
                 customNavBar()
             }
         }
-        .navigationDestination(isPresented: $viewModel.isButton) {
-            ChooseSubcategoryView(viewModel: ChooseSubcategoryViewModel(savedProductCategory: ProductCategory.computers))
-        }
         .onDisappear {
-            if let saved = UserDefaults.standard.selectedProductCategory {
+            if let saved = UserDefaults.standard.selectedSubcategory {
                 print(saved)
             }
         }
     }
-    
     func customNavBar() -> some View {
         return ZStack {
             Group {
@@ -107,8 +114,8 @@ struct ChooseCategoryView: View {
         Button(action: {
             Task {
                 do {
-                    try? await viewModel.saveCategoryAndNavigate()
-                } catch { }
+                    try? await viewModel.saveSubcategoryAndNavigate()
+                } catch {}
             }
         }) {
             Text("Next")
@@ -123,5 +130,5 @@ struct ChooseCategoryView: View {
 }
 
 #Preview {
-    ChooseCategoryView(viewModel: ChooseCategoryViewModel())
+    ChooseSubcategoryView(viewModel: ChooseSubcategoryViewModel(savedProductCategory: ProductCategory.computers))
 }

@@ -8,12 +8,19 @@
 import SwiftUI
 
 class ChooseCategoryViewModel: ObservableObject {
-    @Published var selectedTag: ProductCategories?
+    @Published var selectedTag: ProductCategory?
+    @Published var isButton: Bool = false
     
     var isTagSelected: Bool {
-        guard let tag = selectedTag?.rawValue.isEmpty else {
-            return false
+        return selectedTag != nil
+    }
+    
+    func saveCategoryAndNavigate() {
+        if let selectedTag = selectedTag {
+            UserDefaults.standard.selectedProductCategory = selectedTag
+            DispatchQueue.main.async {
+                self.isButton = true
+            }
         }
-        return true
     }
 }

@@ -62,6 +62,8 @@
 		15893D532B66D10E006BD88C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15893D522B66D10E006BD88C /* SettingsView.swift */; };
 		15893D572B66D68C006BD88C /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15893D562B66D68C006BD88C /* AppColor.swift */; };
 		15893D592B66F7C5006BD88C /* ViewOffsetKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15893D582B66F7C5006BD88C /* ViewOffsetKey.swift */; };
+		1599A4722B751ACF004B76F6 /* ChooseSubcategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1599A4712B751ACF004B76F6 /* ChooseSubcategoryViewModel.swift */; };
+		1599A4742B751ADA004B76F6 /* ChooseSubcategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1599A4732B751ADA004B76F6 /* ChooseSubcategoryView.swift */; };
 		15FE37A92B6BBE1D00E8E2BF /* ChooseCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FE37A82B6BBE1D00E8E2BF /* ChooseCategoryView.swift */; };
 		15FE37AB2B6BBE2700E8E2BF /* ChooseCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FE37AA2B6BBE2700E8E2BF /* ChooseCategoryViewModel.swift */; };
 		15FE37AD2B6BC19400E8E2BF /* TagLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FE37AC2B6BC19300E8E2BF /* TagLayout.swift */; };
@@ -97,6 +99,8 @@
 		15893D522B66D10E006BD88C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		15893D562B66D68C006BD88C /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
 		15893D582B66F7C5006BD88C /* ViewOffsetKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewOffsetKey.swift; sourceTree = "<group>"; };
+		1599A4712B751ACF004B76F6 /* ChooseSubcategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSubcategoryViewModel.swift; sourceTree = "<group>"; };
+		1599A4732B751ADA004B76F6 /* ChooseSubcategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseSubcategoryView.swift; sourceTree = "<group>"; };
 		15FE37A82B6BBE1D00E8E2BF /* ChooseCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCategoryView.swift; sourceTree = "<group>"; };
 		15FE37AA2B6BBE2700E8E2BF /* ChooseCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCategoryViewModel.swift; sourceTree = "<group>"; };
 		15FE37AC2B6BC19300E8E2BF /* TagLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagLayout.swift; sourceTree = "<group>"; };
@@ -216,6 +220,7 @@
 		1520DC192B652A5500C9EDAF /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				1599A4752B751AF8004B76F6 /* Protocols */,
 				15893D542B66D66C006BD88C /* Enums */,
 				1520DC6E2B65390D00C9EDAF /* ViewModifiers */,
 			);
@@ -310,10 +315,17 @@
 			isa = PBXGroup;
 			children = (
 				1520DC692B65355300C9EDAF /* AppErrors */,
-				15893D562B66D68C006BD88C /* AppColor.swift */,
 				15FE37AE2B6BEA6300E8E2BF /* ProductCategories.swift */,
+				15893D562B66D68C006BD88C /* AppColor.swift */,
 			);
 			path = Enums;
+			sourceTree = "<group>";
+		};
+		1599A4752B751AF8004B76F6 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		15FE37A52B6BBDDB00E8E2BF /* Add product and choose category */ = {
@@ -321,6 +333,8 @@
 			children = (
 				15FE37A82B6BBE1D00E8E2BF /* ChooseCategoryView.swift */,
 				15FE37AA2B6BBE2700E8E2BF /* ChooseCategoryViewModel.swift */,
+				1599A4732B751ADA004B76F6 /* ChooseSubcategoryView.swift */,
+				1599A4712B751ACF004B76F6 /* ChooseSubcategoryViewModel.swift */,
 			);
 			path = "Add product and choose category";
 			sourceTree = "<group>";
@@ -435,6 +449,8 @@
 				15893D592B66F7C5006BD88C /* ViewOffsetKey.swift in Sources */,
 				15893D472B66D047006BD88C /* MarketViewModel.swift in Sources */,
 				1520DC6B2B65355300C9EDAF /* UserManagerError.swift in Sources */,
+				1599A4722B751ACF004B76F6 /* ChooseSubcategoryViewModel.swift in Sources */,
+				1599A4742B751ADA004B76F6 /* ChooseSubcategoryView.swift in Sources */,
 				1520DC642B65352200C9EDAF /* UserManager.swift in Sources */,
 				15893D412B66CD28006BD88C /* TabBarView.swift in Sources */,
 				1520DC662B65352200C9EDAF /* AuthenticationManager.swift in Sources */,
