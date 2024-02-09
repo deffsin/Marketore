@@ -46,7 +46,7 @@ struct ChooseCategoryView: View {
             }
         }
         .navigationDestination(isPresented: $viewModel.isButton) {
-            ChooseSubcategoryView(viewModel: ChooseSubcategoryViewModel(savedProductCategory: ProductCategory.computers))
+            ChooseSubcategoryView(viewModel: ChooseSubcategoryViewModel())
         }
         .onDisappear {
             if let saved = UserDefaults.standard.selectedProductCategory {

@@ -8,7 +8,7 @@
 import SwiftUI
 
 class ChooseSubcategoryViewModel: ObservableObject {
-    @Published var savedProductCategory: ProductCategory?
+    @Published var savedProductCategory: String?
     @Published var selectedTag: String? = ""
     @Published var isButton: Bool = false
     
@@ -16,7 +16,7 @@ class ChooseSubcategoryViewModel: ObservableObject {
         return selectedTag != nil
     }
     
-    init(savedProductCategory: ProductCategory) {
+    init() {
         self.savedProductCategory = UserDefaults.standard.selectedProductCategory
     }
     

@@ -27,7 +27,7 @@ struct ChooseSubcategoryView: View {
             
             ScrollView(.vertical) {
                 TagLayout(alignment: .center, spacing: 10) {
-                    if viewModel.savedProductCategory == .computers {
+                    if viewModel.savedProductCategory == "computers" {
                         ForEach(ComputerSubcategory.allCases) { tag in
                             tagView(tag.rawValue, viewModel.selectedTag == tag.rawValue ? Color(appColor: .purpleColor) : .gray)
                                 .onTapGesture {
@@ -36,7 +36,7 @@ struct ChooseSubcategoryView: View {
                                     }
                                 }
                         }
-                    } else if viewModel.savedProductCategory == .phones {
+                    } else if viewModel.savedProductCategory == "phones" {
                         ForEach(PhoneSubcategory.allCases) { tag in
                             tagView(tag.rawValue, viewModel.selectedTag == tag.rawValue ? Color(appColor: .purpleColor) : .gray)
                                 .onTapGesture {
@@ -130,5 +130,5 @@ struct ChooseSubcategoryView: View {
 }
 
 #Preview {
-    ChooseSubcategoryView(viewModel: ChooseSubcategoryViewModel(savedProductCategory: ProductCategory.computers))
+    ChooseSubcategoryView(viewModel: ChooseSubcategoryViewModel())
 }
