@@ -11,6 +11,14 @@ class AccountViewModel: ObservableObject {
     @Published private(set) var user: UserModel? = nil
     @Published var isAddProduct: Bool = false
     
+    func initiateNavigationToAddProduct() {
+        Task {
+            do {
+                try? await navigateToAddProduct()
+            } catch { }
+        }
+    }
+    
     func navigateToAddProduct() async throws {
         DispatchQueue.main.async {
             self.isAddProduct = true

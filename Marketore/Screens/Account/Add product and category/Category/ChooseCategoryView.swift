@@ -105,11 +105,7 @@ struct ChooseCategoryView: View {
     
     func styledButton() -> some View {
         Button(action: {
-            Task {
-                do {
-                    try? await viewModel.saveCategoryAndNavigate()
-                } catch { }
-            }
+            viewModel.initiateSavingCategory()
         }) {
             Text("Next")
                 .frame(width: 100, height: 50)

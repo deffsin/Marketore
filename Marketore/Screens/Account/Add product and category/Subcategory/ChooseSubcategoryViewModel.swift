@@ -22,6 +22,14 @@ class ChooseSubcategoryViewModel: ObservableObject {
         getSavedProductFromCategory()
     }
     
+    func initiateSavingSubcategory() {
+        Task {
+            do {
+                try? await saveSubcategoryAndNavigate()
+            } catch { }
+        }
+    }
+    
     func saveSubcategoryAndNavigate() async throws {
         if let selectedTag = selectedTag {
             UserDefaults.standard.selectedSubcategory = selectedTag

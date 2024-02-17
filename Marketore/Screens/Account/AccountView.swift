@@ -97,13 +97,7 @@ struct AccountView: View {
                 Spacer()
                 
                 Button(action: {
-                    Task {
-                        do {
-                            try? await viewModel.navigateToAddProduct()
-                        } catch {
-                            
-                        }
-                    }
+                    viewModel.initiateNavigationToAddProduct()
                 }) {
                     Image(systemName: "plus")
                         .resizable()

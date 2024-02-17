@@ -112,11 +112,7 @@ struct ChooseSubcategoryView: View {
     
     func styledButton() -> some View {
         Button(action: {
-            Task {
-                do {
-                    try? await viewModel.saveSubcategoryAndNavigate()
-                } catch {}
-            }
+            viewModel.initiateSavingSubcategory()
         }) {
             Text("Next")
                 .frame(width: 100, height: 50)

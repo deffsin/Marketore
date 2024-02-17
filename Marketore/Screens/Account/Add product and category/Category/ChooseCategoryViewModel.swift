@@ -17,6 +17,14 @@ class ChooseCategoryViewModel: ObservableObject {
         return selectedTag != nil
     }
     
+    func initiateSavingCategory() {
+        Task {
+            do {
+                try? await saveCategoryAndNavigate()
+            } catch { }
+        }
+    }
+    
     func saveCategoryAndNavigate() {
         if let selectedTag = selectedTag {
             defaults.selectedProductCategory = selectedTag.rawValue
