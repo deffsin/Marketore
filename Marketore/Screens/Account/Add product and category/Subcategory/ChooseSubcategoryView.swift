@@ -62,6 +62,7 @@ struct ChooseSubcategoryView: View {
             }
         }
     }
+    
     func customNavBar() -> some View {
         return ZStack {
             Group {

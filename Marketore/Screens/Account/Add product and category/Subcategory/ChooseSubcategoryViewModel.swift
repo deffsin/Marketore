@@ -32,7 +32,7 @@ class ChooseSubcategoryViewModel: ObservableObject {
     
     func saveSubcategoryAndNavigate() async throws {
         if let selectedTag = selectedTag {
-            UserDefaults.standard.selectedSubcategory = selectedTag
+            defaults.selectedSubcategory = selectedTag
             DispatchQueue.main.async {
                 self.isButton = true
             }
