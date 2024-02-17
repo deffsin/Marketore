@@ -11,13 +11,15 @@ class ChooseCategoryViewModel: ObservableObject {
     @Published var selectedTag: ProductCategory?
     @Published var isButton: Bool = false
     
+    let defaults = UserDefaults.standard
+    
     var isTagSelected: Bool {
         return selectedTag != nil
     }
     
     func saveCategoryAndNavigate() {
         if let selectedTag = selectedTag {
-            UserDefaults.standard.selectedProductCategory = selectedTag.rawValue
+            defaults.selectedProductCategory = selectedTag.rawValue
             DispatchQueue.main.async {
                 self.isButton = true
             }

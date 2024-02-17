@@ -12,12 +12,14 @@ class ChooseSubcategoryViewModel: ObservableObject {
     @Published var selectedTag: String? = ""
     @Published var isButton: Bool = false
     
+    let defaults = UserDefaults.standard
+    
     var isTagSelected: Bool {
         return selectedTag != nil
     }
     
     init() {
-        self.savedProductCategory = UserDefaults.standard.selectedProductCategory
+        getSavedProductFromCategory()
     }
     
     func saveSubcategoryAndNavigate() async throws {
@@ -27,5 +29,9 @@ class ChooseSubcategoryViewModel: ObservableObject {
                 self.isButton = true
             }
         }
+    }
+    
+    func getSavedProductFromCategory() {
+        self.savedProductCategory = defaults.selectedProductCategory
     }
 }
