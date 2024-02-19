@@ -32,7 +32,7 @@ class ChooseSubcategoryViewModel: ObservableObject {
     
     func saveSubcategoryAndNavigate() async throws {
         if let selectedTag = selectedTag {
-            defaults.selectedSubcategory = selectedTag
+            UserDefaultsHelper.shared.setData(value: selectedTag, key: .productSubcategory)
             DispatchQueue.main.async {
                 self.isButton = true
             }
@@ -40,6 +40,6 @@ class ChooseSubcategoryViewModel: ObservableObject {
     }
     
     func getSavedProductFromCategory() {
-        self.savedProductCategory = defaults.selectedProductCategory
+        self.savedProductCategory = UserDefaultsHelper.shared.getData(type: String.self, forKey: .productCategory)
     }
 }

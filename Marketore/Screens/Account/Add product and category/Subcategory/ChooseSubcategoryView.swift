@@ -56,11 +56,6 @@ struct ChooseSubcategoryView: View {
                 customNavBar()
             }
         }
-        .onDisappear {
-            if let saved = UserDefaults.standard.selectedSubcategory {
-                print(saved)
-            }
-        }
     }
     
     func customNavBar() -> some View {

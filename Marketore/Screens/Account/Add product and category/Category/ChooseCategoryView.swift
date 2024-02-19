@@ -48,11 +48,6 @@ struct ChooseCategoryView: View {
         .navigationDestination(isPresented: $viewModel.isButton) {
             ChooseSubcategoryView(viewModel: ChooseSubcategoryViewModel())
         }
-        .onDisappear {
-            if let saved = UserDefaults.standard.selectedProductCategory {
-                print(saved)
-            }
-        }
     }
     
     func customNavBar() -> some View {

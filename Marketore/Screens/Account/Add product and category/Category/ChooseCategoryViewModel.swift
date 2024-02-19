@@ -27,7 +27,7 @@ class ChooseCategoryViewModel: ObservableObject {
     
     func saveCategoryAndNavigate() {
         if let selectedTag = selectedTag {
-            defaults.selectedProductCategory = selectedTag.rawValue
+            UserDefaultsHelper.shared.setData(value: selectedTag.rawValue, key: .productCategory)
             DispatchQueue.main.async {
                 self.isButton = true
             }
