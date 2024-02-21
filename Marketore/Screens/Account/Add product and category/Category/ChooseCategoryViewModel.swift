@@ -25,11 +25,11 @@ class ChooseCategoryViewModel: ObservableObject {
         }
     }
     
-    func saveCategoryAndNavigate() {
+    func saveCategoryAndNavigate() async throws {
         if let selectedTag = selectedTag {
             UserDefaultsHelper.shared.setData(value: selectedTag.rawValue, key: .productCategory)
             DispatchQueue.main.async {
-                self.isButton = true
+                self.isButton.toggle()
             }
         }
     }

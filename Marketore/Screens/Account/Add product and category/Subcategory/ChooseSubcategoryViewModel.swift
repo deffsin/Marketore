@@ -34,7 +34,7 @@ class ChooseSubcategoryViewModel: ObservableObject {
         if let selectedTag = selectedTag {
             UserDefaultsHelper.shared.setData(value: selectedTag, key: .productSubcategory)
             DispatchQueue.main.async {
-                self.isButton = true
+                self.isButton.toggle()
             }
         }
     }
