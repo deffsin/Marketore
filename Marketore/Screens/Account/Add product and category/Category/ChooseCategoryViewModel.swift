@@ -7,12 +7,10 @@
 
 import SwiftUI
 
-class ChooseCategoryViewModel: ObservableObject {
+class ChooseCategoryViewModel: ObservableObject, SaveDataUD {
     @Published var selectedTag: ProductCategory?
     @Published var isButton: Bool = false
-    
-    let defaults = UserDefaults.standard
-    
+        
     var isTagSelected: Bool {
         return selectedTag != nil
     }
@@ -20,12 +18,12 @@ class ChooseCategoryViewModel: ObservableObject {
     func initiateSavingCategory() {
         Task {
             do {
-                try? await saveCategoryAndNavigate()
+                try? await saveDataAndNavigate()
             } catch { }
         }
     }
     
-    func saveCategoryAndNavigate() async throws {
+    func saveDataAndNavigate() async throws {
         if let selectedTag = selectedTag {
             UserDefaultsHelper.shared.setData(value: selectedTag.rawValue, key: .productCategory)
             DispatchQueue.main.async {
