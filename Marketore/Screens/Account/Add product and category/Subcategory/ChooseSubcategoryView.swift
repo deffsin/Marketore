@@ -26,6 +26,9 @@ struct ChooseSubcategoryView: View {
                 .ignoresSafeArea(.all)
             
             ScrollView(.vertical) {
+                header()
+                    .padding([.horizontal, .vertical], 10)
+                
                 TagLayout(alignment: .center, spacing: 10) {
                     if viewModel.savedProductCategory == "computers" {
                         ForEach(ComputerSubcategory.allCases) { tag in
@@ -89,6 +92,20 @@ struct ChooseSubcategoryView: View {
         }
         .frame(height: 35)
         .frame(maxHeight: .infinity, alignment: .top)
+    }
+    
+    func header() -> some View {
+        HStack {
+            headerItem(isActive: true)
+            headerItem(isActive: true)
+            headerItem()
+        }
+    }
+
+    func headerItem(isActive: Bool = false) -> some View {
+        RoundedRectangle(cornerRadius: 20)
+            .frame(width: 35, height: 8)
+            .foregroundColor(isActive ? .white : .gray.opacity(0.5))
     }
     
     func tagView(_ tag: String, _ color: Color) -> some View {

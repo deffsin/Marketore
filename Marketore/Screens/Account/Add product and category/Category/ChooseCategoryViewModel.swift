@@ -10,7 +10,7 @@ import SwiftUI
 class ChooseCategoryViewModel: ObservableObject, SaveDataUD {
     @Published var selectedTag: ProductCategory?
     @Published var isButton: Bool = false
-        
+    
     var isTagSelected: Bool {
         return selectedTag != nil
     }

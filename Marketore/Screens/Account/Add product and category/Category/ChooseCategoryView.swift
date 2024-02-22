@@ -26,6 +26,9 @@ struct ChooseCategoryView: View {
                 .ignoresSafeArea(.all)
             
             ScrollView(.vertical) {
+                header()
+                    .padding([.horizontal, .vertical], 10)
+                
                 TagLayout(alignment: .center, spacing: 10) {
                     ForEach(ProductCategory.allCases, id: \.self) { tag in
                         tagView(tag.rawValue, viewModel.selectedTag == tag ? Color(appColor: .purpleColor) : .gray)
@@ -81,6 +84,20 @@ struct ChooseCategoryView: View {
         }
         .frame(height: 35)
         .frame(maxHeight: .infinity, alignment: .top)
+    }
+    
+    func header() -> some View {
+        HStack {
+            headerItem(isActive: true)
+            headerItem()
+            headerItem()
+        }
+    }
+
+    func headerItem(isActive: Bool = false) -> some View {
+        RoundedRectangle(cornerRadius: 20)
+            .frame(width: 35, height: 8)
+            .foregroundColor(isActive ? .white : .gray.opacity(0.5))
     }
     
     func tagView(_ tag: String, _ color: Color) -> some View {
