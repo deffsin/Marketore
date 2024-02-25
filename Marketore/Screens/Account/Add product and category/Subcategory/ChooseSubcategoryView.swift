@@ -25,7 +25,7 @@ struct ChooseSubcategoryView: View {
             Color(appColor: .darkBackgroundColor)
                 .ignoresSafeArea(.all)
             
-            ScrollView(.vertical) {
+            VStack {
                 header()
                     .padding([.horizontal, .vertical], 10)
                 
@@ -53,11 +53,15 @@ struct ChooseSubcategoryView: View {
                 
                 styledButton()
                     .padding(.top, 70)
+                Spacer()
             }
             .padding(.top, 50)
             .overlay {
                 customNavBar()
             }
+        }
+        .navigationDestination(isPresented: $viewModel.isButton) {
+            ProductInfoView(viewModel: ProductInfoViewModel())
         }
     }
     

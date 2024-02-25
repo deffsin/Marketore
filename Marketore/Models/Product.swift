@@ -16,5 +16,4 @@ struct Product: Codable {
     let category: String
     let subcategory: String
     let location: String
-    
 }

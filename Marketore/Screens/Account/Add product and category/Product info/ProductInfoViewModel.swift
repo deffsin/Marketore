@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+class ProductInfoViewModel: ObservableObject {
+    @Published var title: String = ""
+    @Published var description: String = ""
+    @Published var location: String = ""
+    @Published var contact: String = ""
+}

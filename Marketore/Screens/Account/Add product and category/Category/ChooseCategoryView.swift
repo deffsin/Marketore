@@ -25,7 +25,7 @@ struct ChooseCategoryView: View {
             Color(appColor: .darkBackgroundColor)
                 .ignoresSafeArea(.all)
             
-            ScrollView(.vertical) {
+            VStack {
                 header()
                     .padding([.horizontal, .vertical], 10)
                 
@@ -42,6 +42,7 @@ struct ChooseCategoryView: View {
                 
                 styledButton()
                     .padding(.top, 70)
+                Spacer()
             }
             .padding(.top, 50)
             .overlay {
