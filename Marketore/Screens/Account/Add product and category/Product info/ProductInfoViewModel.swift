@@ -12,4 +12,15 @@ class ProductInfoViewModel: ObservableObject {
     @Published var description: String = ""
     @Published var location: String = ""
     @Published var contact: String = ""
+    @Published var savedProduct: String?
+    @Published var savedSubproduct: String?
+    
+    init() {
+        getData()
+    }
+    
+    func getData() {
+        self.savedProduct = UserDefaultsHelper.shared.getData(type: String.self, forKey: .productCategory)
+        self.savedSubproduct = UserDefaultsHelper.shared.getData(type: String.self, forKey: .productSubcategory)
+    }
 }
