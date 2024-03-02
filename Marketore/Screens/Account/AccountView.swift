@@ -63,9 +63,8 @@ struct AccountView: View {
         .task {
             try? await viewModel.loadUserData()
         }
-        .navigationDestination(isPresented: $viewModel.isAddProduct) {
-            ChooseCategoryView(viewModel: ChooseCategoryViewModel())
-        }
+        
+        NavigationLink(destination: AccountNavigation.category, isActive: $viewModel.isButton) {}
     }
     
     func customNavBar(offset: CGFloat) -> some View {

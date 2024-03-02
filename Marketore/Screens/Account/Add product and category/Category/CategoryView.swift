@@ -1,5 +1,5 @@
 //
-//  ChooseCategoryView.swift
+//  CategoryView.swift
 //  Marketore
 //
 //  Created by Denis Sinitsa on 01.02.2024.
@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct ChooseCategoryView: View {
+struct CategoryView: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.dismiss) var dismiss
-    @ObservedObject var viewModel: ChooseCategoryViewModel
+    @ObservedObject var viewModel: CategoryViewModel
     
     var body: some View {
-        NavigationStack {
+        ZStack {
             buildMainContent()
         }
         .navigationBarBackButtonHidden(true)
@@ -48,9 +48,8 @@ struct ChooseCategoryView: View {
             .overlay {
                 customNavBar()
             }
-        }
-        .navigationDestination(isPresented: $viewModel.isButton) {
-            ChooseSubcategoryView(viewModel: ChooseSubcategoryViewModel())
+            
+            NavigationLink(destination: AccountNavigation.subcategory, isActive: $viewModel.isButton) {}
         }
     }
     
@@ -132,5 +131,5 @@ struct ChooseCategoryView: View {
 }
 
 #Preview {
-    ChooseCategoryView(viewModel: ChooseCategoryViewModel())
+    CategoryView(viewModel: CategoryViewModel())
 }

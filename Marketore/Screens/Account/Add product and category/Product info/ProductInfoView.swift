@@ -32,7 +32,11 @@ struct ProductInfoView: View {
                     
                     /// Photo....
                     
-                    textFields()
+                    VStack(spacing: 15) {
+                        textFields()
+                        
+                        tagsLayout()
+                    }
                     
                     styledButton()
                         .padding(.top, 70)
@@ -122,6 +126,36 @@ struct ProductInfoView: View {
                 .cornerRadius(8)
         }
         .font(.system(size: 14))
+    }
+    
+    func tagsLayout() -> some View {
+        VStack(spacing: 5) {
+            Text("Tags:")
+                .font(.system(size: 14))
+                .bold()
+                .foregroundColor(.white)
+            
+            TagLayout(alignment: .center, spacing: 10) {
+                ForEach(viewModel.allData, id: \.self) { tag in
+                    tagView(tag)
+                }
+            }
+        }
+    }
+    
+    func tagView(_ tag: String) -> some View {
+        HStack(spacing: 10) {
+            Text(tag)
+                .font(.callout)
+                .fontWeight(.semibold)
+        }
+        .frame(height: 35)
+        .foregroundStyle(.white)
+        .padding(.horizontal, 15)
+        .background {
+            Capsule()
+                .fill(Color(appColor: .purpleColor))
+        }
     }
     
     func styledButton() -> some View {

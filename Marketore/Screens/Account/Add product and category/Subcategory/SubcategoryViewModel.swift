@@ -1,5 +1,5 @@
 //
-//  ChooseSubcategoryViewModel.swift
+//  SubcategoryViewModel.swift
 //  Marketore
 //
 //  Created by Denis Sinitsa on 08.02.2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class ChooseSubcategoryViewModel: ObservableObject, SaveDataUD, GetDataUD {
+class SubcategoryViewModel: ObservableObject, SaveDataUD, GetDataUD {
     @Published var savedProductCategory: String?
     @Published var selectedTag: String? = ""
     @Published var isButton: Bool = false

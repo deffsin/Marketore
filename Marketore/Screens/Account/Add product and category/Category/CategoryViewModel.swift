@@ -1,5 +1,5 @@
 //
-//  ChooseCategoryViewModel.swift
+//  CategoryViewModel.swift
 //  Marketore
 //
 //  Created by Denis Sinitsa on 01.02.2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class ChooseCategoryViewModel: ObservableObject, SaveDataUD {
+class CategoryViewModel: ObservableObject, SaveDataUD {
     @Published var selectedTag: ProductCategory?
     @Published var isButton: Bool = false
     
@@ -16,14 +16,10 @@ class ChooseCategoryViewModel: ObservableObject, SaveDataUD {
     }
     
     func initiateSavingCategory() {
-        Task {
-            do {
-                try? await saveDataAndNavigate()
-            } catch { }
-        }
+        saveDataAndNavigate()
     }
     
-    func saveDataAndNavigate() async throws {
+    func saveDataAndNavigate() {
         if let selectedTag = selectedTag {
             UserDefaultsHelper.shared.setData(value: selectedTag.rawValue, key: .productCategory)
             DispatchQueue.main.async {

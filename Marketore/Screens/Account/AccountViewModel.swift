@@ -9,7 +9,7 @@ import SwiftUI
 
 class AccountViewModel: ObservableObject {
     @Published private(set) var user: UserModel? = nil
-    @Published var isAddProduct: Bool = false
+    @Published var isButton: Bool = false
     
     func initiateNavigationToAddProduct() {
         Task {
@@ -21,7 +21,7 @@ class AccountViewModel: ObservableObject {
     
     func navigateToAddProduct() async throws {
         DispatchQueue.main.async {
-            self.isAddProduct = true
+            self.isButton = true
         }
     }
     
