@@ -12,28 +12,59 @@ class ProductInfoViewModel: ObservableObject {
     @Published var description: String = ""
     @Published var location: String = ""
     @Published var contact: String = ""
-    var savedProduct: String?
-    var savedSubproduct: String?
     
+    var isMessageToUser: Bool = false
+    var messageToUser: String?
+    var savedCategory: String?
+    var savedSubcategory: String?
     var allData = [String]()
+    var dataIsValid: Bool {
+        if !(title.isEmpty && location.isEmpty && contact.isEmpty) {
+            return true
+        }
+        return false
+    }
     
     init() {
         getData()
     }
     
+    func initiateSavingData() async {
+        Task {
+            if dataIsValid {
+                try? await addProductData()
+            } else {
+                isMessageToUser = true
+                messageToUser = "Please, add the title, location and contact information."
+            }
+        }
+    }
+    
+    func addProductData() async throws {
+        Task {
+            do {
+                let authUser = try AuthenticationManager.shared.authenticatedUser()
+                
+                try? await UserManager.shared.saveProduct(id: authUser.uid, fullname: authUser.name ?? "", title: title, description: description, category: savedCategory!, subcategory: savedSubcategory!, location: location, contact: contact)
+            } catch {
+                UserManagerError.connectionFailed
+            }
+        }
+    }
+    
     func getData() {
-        self.savedProduct = UserDefaultsHelper.shared.getData(type: String.self, forKey: .productCategory)
-        self.savedSubproduct = UserDefaultsHelper.shared.getData(type: String.self, forKey: .productSubcategory)
+        self.savedCategory = UserDefaultsHelper.shared.getData(type: String.self, forKey: .productCategory)
+        self.savedSubcategory = UserDefaultsHelper.shared.getData(type: String.self, forKey: .productSubcategory)
         saveDataToArray()
     }
     
     func saveDataToArray() {
-        if let product = savedProduct {
-            allData.append(product)
+        if let category = savedCategory {
+            allData.append(category)
         }
         
-        if let subproduct = savedSubproduct {
-            allData.append(subproduct)
+        if let subcategory = savedSubcategory {
+            allData.append(subcategory)
         }
     }
 }

@@ -36,6 +36,10 @@ struct ProductInfoView: View {
                         textFields()
                         
                         tagsLayout()
+                        
+                        if viewModel.isMessageToUser {
+                            messageToUser()
+                        }
                     }
                     
                     styledButton()
@@ -112,10 +116,12 @@ struct ProductInfoView: View {
         VStack(alignment: .leading, spacing: 5) {
             HStack(spacing: 2) {
                 Text("Description:")
+                    .font(.system(size: 14))
                 Text("(optional)")
                     .font(.system(size: 10))
-                    .opacity(0.5)
+                    .opacity(0.7)
             }
+            .bold()
             .foregroundStyle(.white)
             
             TextEditor(text: $viewModel.description)
@@ -158,9 +164,18 @@ struct ProductInfoView: View {
         }
     }
     
+    func messageToUser() -> some View {
+        ZStack {
+            Text(viewModel.messageToUser ?? "")
+                .offset(y: 10)
+        }
+    }
+    
     func styledButton() -> some View {
         Button(action: {
-
+            Task {
+                await viewModel.initiateSavingData()
+            }
         }) {
             Text("Add")
                 .frame(width: 100, height: 50)
