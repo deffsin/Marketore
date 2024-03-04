@@ -46,6 +46,7 @@ class ProductInfoViewModel: ObservableObject {
                 let authUser = try AuthenticationManager.shared.authenticatedUser()
                 
                 try? await UserManager.shared.saveProduct(id: authUser.uid, fullname: authUser.name ?? "", title: title, description: description, category: savedCategory!, subcategory: savedSubcategory!, location: location, contact: contact)
+                clearUserDefaults()
             } catch {
                 UserManagerError.connectionFailed
             }
@@ -56,6 +57,12 @@ class ProductInfoViewModel: ObservableObject {
         self.savedCategory = UserDefaultsHelper.shared.getData(type: String.self, forKey: .productCategory)
         self.savedSubcategory = UserDefaultsHelper.shared.getData(type: String.self, forKey: .productSubcategory)
         saveDataToArray()
+    }
+    
+    func clearUserDefaults() {
+        UserDefaultsHelper.shared.removeData(key: .productCategory)
+        UserDefaultsHelper.shared.removeData(key: .productSubcategory)
+        print("Removed data from UserDefaults: productCategory and productSubcategory")
     }
     
     func saveDataToArray() {
