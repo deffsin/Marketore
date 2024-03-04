@@ -23,7 +23,7 @@ enum AccountNavigation: String, Hashable, Identifiable, View {
         case .subcategory:
             SubcategoryView(viewModel: SubcategoryViewModel())
         case .productInfo:
-            ProductInfoView(viewModel: ProductInfoViewModel())
+            ProductInfoView(viewModel: ProductInfoViewModel(), isShowing: .constant(false))
         }
     }
 }

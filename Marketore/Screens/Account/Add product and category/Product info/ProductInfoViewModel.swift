@@ -12,11 +12,12 @@ class ProductInfoViewModel: ObservableObject {
     @Published var description: String = ""
     @Published var location: String = ""
     @Published var contact: String = ""
-    
-    var isMessageToUser: Bool = false
-    var messageToUser: String?
-    var savedCategory: String?
-    var savedSubcategory: String?
+    @Published var messageToUser: String?
+    @Published var savedCategory: String?
+    @Published var savedSubcategory: String?
+    @Published var isShowingSnackBar: Bool = false
+
+    var snackBarTimer: DispatchWorkItem?
     var allData = [String]()
     var dataIsValid: Bool {
         if !(title.isEmpty && location.isEmpty && contact.isEmpty) {
@@ -34,8 +35,10 @@ class ProductInfoViewModel: ObservableObject {
             if dataIsValid {
                 try? await addProductData()
             } else {
-                isMessageToUser = true
-                messageToUser = "Please, add the title, location and contact information."
+                DispatchQueue.main.async { [weak self] in
+                    self?.isShowingSnackBar = true
+                    self?.messageToUser = "Please, add the title, location and contact information ❌"
+                }
             }
         }
     }
@@ -47,6 +50,10 @@ class ProductInfoViewModel: ObservableObject {
                 
                 try? await UserManager.shared.saveProduct(id: authUser.uid, fullname: authUser.name ?? "", title: title, description: description, category: savedCategory!, subcategory: savedSubcategory!, location: location, contact: contact)
                 clearUserDefaults()
+                DispatchQueue.main.async { [weak self] in
+                    self?.isShowingSnackBar = true
+                    self?.messageToUser = "A product was successfully added 🎉"
+                }
             } catch {
                 UserManagerError.connectionFailed
             }
@@ -73,5 +80,22 @@ class ProductInfoViewModel: ObservableObject {
         if let subcategory = savedSubcategory {
             allData.append(subcategory)
         }
+    }
+    
+    func showSnackBar() {
+        DispatchQueue.main.async { [weak self] in
+            self?.isShowingSnackBar = false
+        }
+    }
+    
+    func startSnackBarTimer() {
+        snackBarTimer?.cancel()
+        
+        let item = DispatchWorkItem { [weak self] in
+            self?.showSnackBar()
+        }
+        
+        snackBarTimer = item
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: item)
     }
 }

@@ -11,6 +11,8 @@ struct ProductInfoView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject var viewModel: ProductInfoViewModel
     
+    @Binding var isShowing: Bool
+    
     var body: some View {
         ZStack {
             buildMainContent()
@@ -37,9 +39,6 @@ struct ProductInfoView: View {
                         
                         tagsLayout()
                         
-                        if viewModel.isMessageToUser {
-                            messageToUser()
-                        }
                     }
                     
                     styledButton()
@@ -47,10 +46,27 @@ struct ProductInfoView: View {
                     
                     Spacer()
                 }
+                .overlay {
+                    Group {
+                        if viewModel.isShowingSnackBar {
+                            SnackBar(isShowing: $viewModel.isShowingSnackBar, message: viewModel.messageToUser!)
+                                .onAppear(perform: viewModel.startSnackBarTimer)
+                                .offset(y: 300)
+                        }
+                    }
+                }
                 Spacer()
             }
             .padding(.horizontal, 15)
             .padding(.top, 50)
+            .animation(.easeInOut, value: isShowing)
+            .onChange(of: viewModel.isShowingSnackBar) {
+                withAnimation {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
+                        isShowing = false
+                    }
+                }
+            }
             .overlay {
                 customNavBar()
             }
@@ -165,13 +181,6 @@ struct ProductInfoView: View {
         }
     }
     
-    func messageToUser() -> some View {
-        ZStack {
-            Text(viewModel.messageToUser ?? "")
-                .offset(y: 10)
-        }
-    }
-    
     func styledButton() -> some View {
         Button(action: {
             Task {
@@ -188,5 +197,5 @@ struct ProductInfoView: View {
 }
 
 #Preview {
-    ProductInfoView(viewModel: ProductInfoViewModel())
+    ProductInfoView(viewModel: ProductInfoViewModel(), isShowing: .constant(false))
 }

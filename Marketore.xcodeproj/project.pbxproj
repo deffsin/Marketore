@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1503FC542B9355BD0074B6BB /* AccountNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1503FC532B9355BD0074B6BB /* AccountNavigation.swift */; };
+		1503FC572B95CAFE0074B6BB /* SnackBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1503FC562B95CAFE0074B6BB /* SnackBar.swift */; };
 		1520DC052B63A3B000C9EDAF /* MarketoreApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1520DC042B63A3B000C9EDAF /* MarketoreApp.swift */; };
 		1520DC072B63A3B000C9EDAF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1520DC062B63A3B000C9EDAF /* ContentView.swift */; };
 		1520DC092B63A3B200C9EDAF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1520DC082B63A3B200C9EDAF /* Assets.xcassets */; };
@@ -90,6 +91,7 @@
 
 /* Begin PBXFileReference section */
 		1503FC532B9355BD0074B6BB /* AccountNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountNavigation.swift; sourceTree = "<group>"; };
+		1503FC562B95CAFE0074B6BB /* SnackBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackBar.swift; sourceTree = "<group>"; };
 		1520DC012B63A3B000C9EDAF /* Marketore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marketore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1520DC042B63A3B000C9EDAF /* MarketoreApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketoreApp.swift; sourceTree = "<group>"; };
 		1520DC062B63A3B000C9EDAF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 				1520DC6F2B65391A00C9EDAF /* SocialMediaButton.swift */,
 				15893D582B66F7C5006BD88C /* ViewOffsetKey.swift */,
 				15F32FE32B8B9BB000A153AD /* InputField.swift */,
+				1503FC562B95CAFE0074B6BB /* SnackBar.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -574,6 +577,7 @@
 				1599A4722B751ACF004B76F6 /* SubcategoryViewModel.swift in Sources */,
 				15AF5FDC2B867422007173AF /* Product.swift in Sources */,
 				1503FC542B9355BD0074B6BB /* AccountNavigation.swift in Sources */,
+				1503FC572B95CAFE0074B6BB /* SnackBar.swift in Sources */,
 				1599A4742B751ADA004B76F6 /* SubcategoryView.swift in Sources */,
 				1520DC642B65352200C9EDAF /* UserManager.swift in Sources */,
 				15893D412B66CD28006BD88C /* TabBarView.swift in Sources */,
