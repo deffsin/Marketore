@@ -35,9 +35,9 @@ class ProductInfoViewModel: ObservableObject {
             if dataIsValid {
                 try? await addProductData()
             } else {
-                DispatchQueue.main.async {
-                    self.isShowingSnackBar = true
-                    self.messageToUser = "Please, add the title, location and contact information ❌"
+                DispatchQueue.main.async { [weak self] in
+                    self?.isShowingSnackBar = true
+                    self?.messageToUser = "Please, add the title, location and contact information ❌"
                 }
             }
         }
@@ -50,9 +50,9 @@ class ProductInfoViewModel: ObservableObject {
                 
                 try? await UserManager.shared.saveProduct(id: authUser.uid, fullname: authUser.name ?? "", title: title, description: description, category: savedCategory!, subcategory: savedSubcategory!, location: location, contact: contact)
                 clearUserDefaults()
-                DispatchQueue.main.async {
-                    self.isShowingSnackBar = true
-                    self.messageToUser = "A product was successfully added 🎉"
+                DispatchQueue.main.async { [weak self] in
+                    self?.isShowingSnackBar = true
+                    self?.messageToUser = "A product was successfully added 🎉"
                 }
             } catch {
                 UserManagerError.connectionFailed
