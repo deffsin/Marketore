@@ -22,12 +22,12 @@ class SubcategoryViewModel: ObservableObject, SaveDataUD, GetDataUD {
     
     func initiateSavingSubcategory() {
         Task {
-            do {
-                try? await saveDataAndNavigate()
-            } catch { }
+            try? await saveDataAndNavigate()
         }
     }
     
+    /// Data fetching and saving below
+    ///
     func saveDataAndNavigate() async throws {
         if let selectedTag = selectedTag {
             UserDefaultsHelper.shared.setData(value: selectedTag, key: .productSubcategory)

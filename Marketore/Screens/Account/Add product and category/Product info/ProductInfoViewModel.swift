@@ -44,6 +44,25 @@ class ProductInfoViewModel: ObservableObject {
         }
     }
     
+    func showSnackBar() {
+        DispatchQueue.main.async { [weak self] in
+            self?.isShowingSnackBar = false
+        }
+    }
+    
+    func startSnackBarTimer() {
+        snackBarTimer?.cancel()
+        
+        let item = DispatchWorkItem { [weak self] in
+            self?.showSnackBar()
+        }
+        
+        snackBarTimer = item
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: item)
+    }
+    
+    /// Data fetching and saving below
+    ///
     func addProductData() async throws {
         Task {
             do {
@@ -84,22 +103,5 @@ class ProductInfoViewModel: ObservableObject {
         if let subcategory = savedSubcategory {
             allData.append(subcategory)
         }
-    }
-    
-    func showSnackBar() {
-        DispatchQueue.main.async { [weak self] in
-            self?.isShowingSnackBar = false
-        }
-    }
-    
-    func startSnackBarTimer() {
-        snackBarTimer?.cancel()
-        
-        let item = DispatchWorkItem { [weak self] in
-            self?.showSnackBar()
-        }
-        
-        snackBarTimer = item
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: item)
     }
 }

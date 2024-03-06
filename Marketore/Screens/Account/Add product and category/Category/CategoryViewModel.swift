@@ -19,6 +19,8 @@ class CategoryViewModel: ObservableObject, SaveDataUD {
         saveDataAndNavigate()
     }
     
+    /// Data fetching and saving below
+    ///
     func saveDataAndNavigate() {
         if let selectedTag = selectedTag {
             UserDefaultsHelper.shared.setData(value: selectedTag.rawValue, key: .productCategory)

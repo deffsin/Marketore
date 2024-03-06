@@ -13,18 +13,18 @@ class AccountViewModel: ObservableObject {
     
     func initiateNavigationToAddProduct() {
         Task {
-            do {
-                try? await navigateToAddProduct()
-            } catch { }
+            await navigateToAddProduct()
         }
     }
     
-    func navigateToAddProduct() async throws {
+    func navigateToAddProduct() async {
         DispatchQueue.main.async {
             self.isButton = true
         }
     }
     
+    /// Data fetching and saving below
+    ///
     func loadUserData() async throws {
         Task {
             do {
