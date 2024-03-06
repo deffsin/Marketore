@@ -19,7 +19,7 @@ class UserManager {
             return user
             
         } catch {
-            throw UserManagerError.connectionFailed
+            throw AppError.connectionFailed
         }
     }
     
@@ -27,7 +27,7 @@ class UserManager {
         do {
             try userDocument(userId: user.userId).setData(from: user, merge: false)
         } catch {
-            throw UserManagerError.connectionFailed
+            throw AppError.connectionFailed
         }
     }
 }

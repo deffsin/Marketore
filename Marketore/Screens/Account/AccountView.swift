@@ -50,7 +50,8 @@ struct AccountView: View {
             }
             .padding(.top, 50)
             .refreshable {
-                try? await viewModel.loadUserData()
+                try? await viewModel.getUserData()
+                try? await viewModel.getProducts()
             }
             .onPreferenceChange(ViewOffsetKey.self) { offset in
                 withAnimation {
@@ -60,9 +61,6 @@ struct AccountView: View {
             .overlay {
                 customNavBar(offset: scrollOffset)
             }
-        }
-        .task {
-            try? await viewModel.loadUserData()
         }
         
         NavigationLink(destination: AccountNavigation.category, isActive: $viewModel.isButton) {}
@@ -117,7 +115,14 @@ struct AccountView: View {
     }
     
     func contentIfUserHasMarketProduct() -> some View {
-        Text("AccountView")
+        ZStack {
+            if let products = viewModel.allProducts {
+                ForEach(products, id: \.title) { product in
+                    Text(product.title)
+                        .foregroundStyle(.white)
+                }
+            }
+        }
     }
     
     func contentIfUserDoesntHaveMarketProduct() -> some View {

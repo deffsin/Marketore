@@ -41,8 +41,18 @@ class ProductManager: ObservableObject {
                 ]
                 try await document.setData(data, merge: false)
             } catch {
-                throw UserManagerError.connectionFailed
+                throw AppError.connectionFailed
             }
+        }
+    }
+    
+    func getAllProducts(userId: String) async throws -> [Product] {
+        do {
+            let snapshot = try await productCollection(userId: userId).getDocuments()
+            return snapshot.documents.compactMap { try? $0.data(as: Product.self) }
+            
+        } catch {
+            throw AppError.connectionFailed
         }
     }
 }

@@ -78,7 +78,7 @@ class ProductInfoViewModel: ObservableObject {
                     self?.isButton = true
                 }
             } catch {
-                UserManagerError.connectionFailed
+                AppError.connectionFailed
             }
         }
     }

@@ -51,7 +51,7 @@
 		1520DC662B65352200C9EDAF /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1520DC612B65352200C9EDAF /* AuthenticationManager.swift */; };
 		1520DC672B65352200C9EDAF /* SignInGoogleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1520DC622B65352200C9EDAF /* SignInGoogleHelper.swift */; };
 		1520DC682B65352200C9EDAF /* AuthDataResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1520DC632B65352200C9EDAF /* AuthDataResultModel.swift */; };
-		1520DC6B2B65355300C9EDAF /* UserManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1520DC6A2B65355300C9EDAF /* UserManagerError.swift */; };
+		1520DC6B2B65355300C9EDAF /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1520DC6A2B65355300C9EDAF /* AppError.swift */; };
 		1520DC6D2B6536F500C9EDAF /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1520DC6C2B6536F400C9EDAF /* RootView.swift */; };
 		1520DC702B65391A00C9EDAF /* SocialMediaButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1520DC6F2B65391A00C9EDAF /* SocialMediaButton.swift */; };
 		15893D412B66CD28006BD88C /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15893D3F2B66CD28006BD88C /* TabBarView.swift */; };
@@ -108,7 +108,7 @@
 		1520DC612B65352200C9EDAF /* AuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		1520DC622B65352200C9EDAF /* SignInGoogleHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInGoogleHelper.swift; sourceTree = "<group>"; };
 		1520DC632B65352200C9EDAF /* AuthDataResultModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthDataResultModel.swift; sourceTree = "<group>"; };
-		1520DC6A2B65355300C9EDAF /* UserManagerError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManagerError.swift; sourceTree = "<group>"; };
+		1520DC6A2B65355300C9EDAF /* AppError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		1520DC6C2B6536F400C9EDAF /* RootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		1520DC6F2B65391A00C9EDAF /* SocialMediaButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialMediaButton.swift; sourceTree = "<group>"; };
 		15893D3F2B66CD28006BD88C /* TabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
@@ -311,7 +311,7 @@
 		1520DC692B65355300C9EDAF /* AppErrors */ = {
 			isa = PBXGroup;
 			children = (
-				1520DC6A2B65355300C9EDAF /* UserManagerError.swift */,
+				1520DC6A2B65355300C9EDAF /* AppError.swift */,
 			);
 			path = AppErrors;
 			sourceTree = "<group>";
@@ -576,7 +576,7 @@
 				15893D592B66F7C5006BD88C /* ViewOffsetKey.swift in Sources */,
 				15893D472B66D047006BD88C /* MarketViewModel.swift in Sources */,
 				15F32FE42B8B9BB000A153AD /* InputField.swift in Sources */,
-				1520DC6B2B65355300C9EDAF /* UserManagerError.swift in Sources */,
+				1520DC6B2B65355300C9EDAF /* AppError.swift in Sources */,
 				1599A4722B751ACF004B76F6 /* SubcategoryViewModel.swift in Sources */,
 				15AF5FDC2B867422007173AF /* Product.swift in Sources */,
 				1503FC542B9355BD0074B6BB /* AccountNavigation.swift in Sources */,

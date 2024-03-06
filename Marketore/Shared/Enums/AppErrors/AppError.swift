@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
 
-enum UserManagerError: Error, LocalizedError {
+enum AppError: Error, LocalizedError {
     case connectionFailed
     case invalidData
     case unauthorized
