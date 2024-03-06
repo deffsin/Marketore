@@ -69,6 +69,7 @@
 		15AF5FD82B83F762007173AF /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AF5FD72B83F762007173AF /* UserDefaultsHelper.swift */; };
 		15AF5FDC2B867422007173AF /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AF5FDB2B867422007173AF /* Product.swift */; };
 		15AF5FDE2B8676C7007173AF /* UserDefaultsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AF5FDD2B8676C7007173AF /* UserDefaultsProtocols.swift */; };
+		15B6E8062B98A37A00627D3F /* ProductManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B6E8052B98A37A00627D3F /* ProductManager.swift */; };
 		15C05B7D2B77B5B400D7EE77 /* ProductInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C05B7C2B77B5B400D7EE77 /* ProductInfoViewModel.swift */; };
 		15C05B7F2B77B5C200D7EE77 /* ProductInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C05B7E2B77B5C200D7EE77 /* ProductInfoView.swift */; };
 		15F32FE42B8B9BB000A153AD /* InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F32FE32B8B9BB000A153AD /* InputField.swift */; };
@@ -125,6 +126,7 @@
 		15AF5FD72B83F762007173AF /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		15AF5FDB2B867422007173AF /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		15AF5FDD2B8676C7007173AF /* UserDefaultsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsProtocols.swift; sourceTree = "<group>"; };
+		15B6E8052B98A37A00627D3F /* ProductManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManager.swift; sourceTree = "<group>"; };
 		15C05B7C2B77B5B400D7EE77 /* ProductInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfoViewModel.swift; sourceTree = "<group>"; };
 		15C05B7E2B77B5C200D7EE77 /* ProductInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfoView.swift; sourceTree = "<group>"; };
 		15F32FE32B8B9BB000A153AD /* InputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputField.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				1520DC5E2B65352200C9EDAF /* UserManager.swift */,
+				15B6E8052B98A37A00627D3F /* ProductManager.swift */,
 				1520DC5F2B65352200C9EDAF /* Authentication */,
 			);
 			path = Firestore;
@@ -596,6 +599,7 @@
 				1520DC672B65352200C9EDAF /* SignInGoogleHelper.swift in Sources */,
 				15AF5FDE2B8676C7007173AF /* UserDefaultsProtocols.swift in Sources */,
 				15893D422B66CD28006BD88C /* TabBar.swift in Sources */,
+				15B6E8062B98A37A00627D3F /* ProductManager.swift in Sources */,
 				1520DC052B63A3B000C9EDAF /* MarketoreApp.swift in Sources */,
 				1520DC6D2B6536F500C9EDAF /* RootView.swift in Sources */,
 				15FE37AD2B6BC19400E8E2BF /* TagLayout.swift in Sources */,

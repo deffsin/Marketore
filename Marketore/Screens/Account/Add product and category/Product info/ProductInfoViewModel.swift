@@ -68,7 +68,7 @@ class ProductInfoViewModel: ObservableObject {
             do {
                 let authUser = try AuthenticationManager.shared.authenticatedUser()
                 
-                try? await UserManager.shared.saveProduct(id: authUser.uid, fullname: authUser.name ?? "", title: title, description: description, category: savedCategory!, subcategory: savedSubcategory!, location: location, contact: contact)
+                try? await ProductManager.shared.saveProduct(id: authUser.uid, fullname: authUser.name ?? "", title: title, description: description, category: savedCategory!, subcategory: savedSubcategory!, location: location, contact: contact)
                 clearUserDefaults()
                 DispatchQueue.main.async { [weak self] in
                     self?.isShowingSnackBar = true
