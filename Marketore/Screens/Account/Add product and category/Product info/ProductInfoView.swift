@@ -70,6 +70,8 @@ struct ProductInfoView: View {
             .overlay {
                 customNavBar()
             }
+            
+            NavigationLink(destination: AccountNavigation.account, isActive: $viewModel.isButton) {}
         }
     }
     

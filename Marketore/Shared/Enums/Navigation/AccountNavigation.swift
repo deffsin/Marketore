@@ -8,6 +8,7 @@
 import SwiftUI
 
 enum AccountNavigation: String, Hashable, Identifiable, View {
+    case account
     case category
     case subcategory
     case productInfo
@@ -18,6 +19,8 @@ enum AccountNavigation: String, Hashable, Identifiable, View {
     
     var body: some View {
         switch self {
+        case .account:
+            AccountView(viewModel: AccountViewModel())
         case .category:
             CategoryView(viewModel: CategoryViewModel())
         case .subcategory:

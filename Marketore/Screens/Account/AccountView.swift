@@ -18,6 +18,7 @@ struct AccountView: View {
         NavigationStack {
             buildMainContent()
         }
+        .navigationBarBackButtonHidden(true)
     }
     
     @ViewBuilder

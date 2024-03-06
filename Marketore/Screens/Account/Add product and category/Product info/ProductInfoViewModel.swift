@@ -16,6 +16,7 @@ class ProductInfoViewModel: ObservableObject {
     @Published var savedCategory: String?
     @Published var savedSubcategory: String?
     @Published var isShowingSnackBar: Bool = false
+    @Published var isButton: Bool = false
 
     var snackBarTimer: DispatchWorkItem?
     var allData = [String]()
@@ -53,6 +54,9 @@ class ProductInfoViewModel: ObservableObject {
                 DispatchQueue.main.async { [weak self] in
                     self?.isShowingSnackBar = true
                     self?.messageToUser = "A product was successfully added 🎉"
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+                    self?.isButton = true
                 }
             } catch {
                 UserManagerError.connectionFailed
