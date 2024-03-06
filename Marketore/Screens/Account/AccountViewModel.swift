@@ -77,5 +77,4 @@ class AccountViewModel: ObservableObject {
             }
         }
     }
-    ///
 }

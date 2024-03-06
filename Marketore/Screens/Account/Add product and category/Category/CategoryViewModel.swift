@@ -15,9 +15,12 @@ class CategoryViewModel: ObservableObject, SaveDataUD {
         return selectedTag != nil
     }
     
+    /// Initiation
+    ///
     func initiateSavingCategory() {
         saveDataAndNavigate()
     }
+    ///
     
     /// Data fetching and saving below
     ///

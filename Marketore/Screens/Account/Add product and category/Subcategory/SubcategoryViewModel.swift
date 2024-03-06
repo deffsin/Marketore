@@ -20,11 +20,14 @@ class SubcategoryViewModel: ObservableObject, SaveDataUD, GetDataUD {
         getData()
     }
     
+    /// Initiation
+    ///
     func initiateSavingSubcategory() {
         Task {
             try? await saveDataAndNavigate()
         }
     }
+    ///
     
     /// Data fetching and saving below
     ///

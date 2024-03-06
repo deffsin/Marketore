@@ -31,6 +31,8 @@ class ProductInfoViewModel: ObservableObject {
         getData()
     }
     
+    /// Initiation
+    ///
     func initiateSavingData() async {
         Task {
             if dataIsValid {
@@ -43,23 +45,7 @@ class ProductInfoViewModel: ObservableObject {
             }
         }
     }
-    
-    func showSnackBar() {
-        DispatchQueue.main.async { [weak self] in
-            self?.isShowingSnackBar = false
-        }
-    }
-    
-    func startSnackBarTimer() {
-        snackBarTimer?.cancel()
-        
-        let item = DispatchWorkItem { [weak self] in
-            self?.showSnackBar()
-        }
-        
-        snackBarTimer = item
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: item)
-    }
+    ///
     
     /// Data fetching and saving below
     ///
@@ -89,12 +75,6 @@ class ProductInfoViewModel: ObservableObject {
         saveDataToArray()
     }
     
-    func clearUserDefaults() {
-        UserDefaultsHelper.shared.removeData(key: .productCategory)
-        UserDefaultsHelper.shared.removeData(key: .productSubcategory)
-        print("Removed data from UserDefaults: productCategory and productSubcategory")
-    }
-    
     func saveDataToArray() {
         if let category = savedCategory {
             allData.append(category)
@@ -103,5 +83,29 @@ class ProductInfoViewModel: ObservableObject {
         if let subcategory = savedSubcategory {
             allData.append(subcategory)
         }
+    }
+    ///
+    
+    func clearUserDefaults() {
+        UserDefaultsHelper.shared.removeData(key: .productCategory)
+        UserDefaultsHelper.shared.removeData(key: .productSubcategory)
+        print("Removed data from UserDefaults: productCategory and productSubcategory")
+    }
+    
+    func showSnackBar() {
+        DispatchQueue.main.async { [weak self] in
+            self?.isShowingSnackBar = false
+        }
+    }
+    
+    func startSnackBarTimer() {
+        snackBarTimer?.cancel()
+        
+        let item = DispatchWorkItem { [weak self] in
+            self?.showSnackBar()
+        }
+        
+        snackBarTimer = item
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: item)
     }
 }
