@@ -19,7 +19,7 @@ struct TabBar: View {
                 case .market:
                     MarketView(viewModel: marketViewModel)
                 case .account:
-                    AccountView(viewModel: accountViewModel)
+                    AccountNavigation.account
                 case .settings:
                     SettingsView(viewModel: settingsViewModel, showSignInView: .constant(false))
                 }

@@ -13,7 +13,7 @@ struct CategoryView: View {
     @ObservedObject var viewModel: CategoryViewModel
     
     var body: some View {
-        ZStack {
+        NavigationStack {
             buildMainContent()
         }
         .navigationBarBackButtonHidden(true)

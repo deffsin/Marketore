@@ -10,6 +10,7 @@ import SwiftUI
 struct ProductInfoView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject var viewModel: ProductInfoViewModel
+    @EnvironmentObject var appState: AppState
     
     @Binding var isShowing: Bool
     
@@ -70,8 +71,12 @@ struct ProductInfoView: View {
             .overlay {
                 customNavBar()
             }
-            
-            NavigationLink(destination: AccountNavigation.account, isActive: $viewModel.isButton) {}
+            .onChange(of: viewModel.isButton) { state in
+                print("\(state)")
+                if state {
+                    appState.isFullScreenCoverShown = false
+                }
+            }
         }
     }
     

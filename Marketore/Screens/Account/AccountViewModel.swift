@@ -38,12 +38,6 @@ class AccountViewModel: ObservableObject {
     }
     ///
     
-    func navigateToAddProduct() async {
-        DispatchQueue.main.async {
-            self.isButton = true
-        }
-    }
-    
     /// Data fetching and saving below
     ///
     func getUserData() async throws {
@@ -75,6 +69,13 @@ class AccountViewModel: ObservableObject {
             } catch {
                 throw AppError.unknownError
             }
+        }
+    }
+    ///
+    
+    func navigateToAddProduct() async {
+        DispatchQueue.main.async {
+            self.isButton = true
         }
     }
 }

@@ -7,9 +7,14 @@
 
 import SwiftUI
 
+class AppState: ObservableObject {
+    @Published var isFullScreenCoverShown: Bool = false
+}
+
 struct AccountView: View {
     @Environment(\.colorScheme) var colorScheme
     @ObservedObject var viewModel: AccountViewModel
+    @StateObject var appState = AppState()
     
     @State private var scrollOffset: CGFloat = 0
     @State private var isStarFilled: Bool = false
@@ -62,8 +67,15 @@ struct AccountView: View {
                 customNavBar(offset: scrollOffset)
             }
         }
-        
-        NavigationLink(destination: AccountNavigation.category, isActive: $viewModel.isButton) {}
+        .fullScreenCover(isPresented: $appState.isFullScreenCoverShown) {
+            AccountNavigation.category
+                .environmentObject(appState)
+        }
+        .onChange(of: viewModel.isButton) { state in
+            if state {
+                appState.isFullScreenCoverShown = true
+            }
+        }
     }
     
     func customNavBar(offset: CGFloat) -> some View {
@@ -116,10 +128,12 @@ struct AccountView: View {
     
     func contentIfUserHasMarketProduct() -> some View {
         ZStack {
-            if let products = viewModel.allProducts {
-                ForEach(products, id: \.title) { product in
-                    Text(product.title)
-                        .foregroundStyle(.white)
+            VStack {
+                if let products = viewModel.allProducts {
+                    ForEach(products, id: \.title) { product in
+                        Text(product.title)
+                            .foregroundStyle(.white)
+                    }
                 }
             }
         }
