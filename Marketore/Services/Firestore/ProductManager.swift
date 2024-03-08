@@ -36,7 +36,8 @@ class ProductManager: ObservableObject {
                     Product.CodingKeys.category.rawValue : category,
                     Product.CodingKeys.subcategory.rawValue : subcategory,
                     Product.CodingKeys.location.rawValue : location,
-                    Product.CodingKeys.contact.rawValue : contact
+                    Product.CodingKeys.contact.rawValue : contact,
+                    Product.CodingKeys.dataCreated.rawValue : Date()
                     
                 ]
                 try await document.setData(data, merge: false)

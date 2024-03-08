@@ -75,7 +75,7 @@ class AccountViewModel: ObservableObject {
     
     func navigateToAddProduct() async {
         DispatchQueue.main.async {
-            self.isButton = true
+            self.isButton.toggle()
         }
     }
 }
