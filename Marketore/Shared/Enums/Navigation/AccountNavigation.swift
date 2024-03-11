@@ -7,16 +7,14 @@
 
 import SwiftUI
 
-enum AccountNavigation: String, Hashable, Identifiable, View {
+enum AccountNavigation: Hashable, Identifiable, View {
+    var id: Self { self }
+
     case account
     case category
     case subcategory
     case productInfo
-    case detail
-    
-    var id: String {
-        self.rawValue
-    }
+    case detail(title: String)
     
     var body: some View {
         switch self {
@@ -28,8 +26,8 @@ enum AccountNavigation: String, Hashable, Identifiable, View {
             SubcategoryView(viewModel: SubcategoryViewModel())
         case .productInfo:
             ProductInfoView(viewModel: ProductInfoViewModel(), isShowing: .constant(false))
-        case .detail:
-            CellDetailView()
+        case .detail(let title):
+            CellDetailView(title: title)
         }
     }
 }

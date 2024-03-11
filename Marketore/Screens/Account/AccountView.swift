@@ -135,7 +135,7 @@ struct AccountView: View {
             LazyVGrid(columns: flexibleColumn) {
                 if let products = viewModel.allProducts {
                     ForEach(products, id: \.title) { product in
-                        NavigationLink(destination: AccountNavigation.detail) {
+                        NavigationLink(destination: AccountNavigation.detail(title: product.title)) {
                             CellView(title: product.title)
                         }
                     }
