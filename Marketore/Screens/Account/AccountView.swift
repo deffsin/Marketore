@@ -19,6 +19,8 @@ struct AccountView: View {
     @State private var scrollOffset: CGFloat = 0
     @State private var isStarFilled: Bool = false
     
+    let flexibleColumn = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+    
     var body: some View {
         NavigationStack {
             buildMainContent()
@@ -34,7 +36,7 @@ struct AccountView: View {
             
             ScrollView {
                 HStack {
-                    Spacer()
+                    // Spacer?
                     VStack {
                         if let user = viewModel.user {
                             if user.hasMarketProduct! {
@@ -46,7 +48,7 @@ struct AccountView: View {
                     }
                     .foregroundStyle(.white)
                     .padding(.top, 10)
-                    Spacer()
+                    // Spacer?
                 }
                 .background(GeometryReader {
                     Color.clear.preference(key: ViewOffsetKey.self, value: $0.frame(in: .global).minY)
@@ -94,7 +96,6 @@ struct AccountView: View {
                 Button(action: { }) {
                     Image(systemName: "bookmark")
                         .resizable()
-                        .foregroundColor(.white)
                         .padding(9)
                         .background(.clear)
                         .frame(width: 39, height: 48)
@@ -111,7 +112,6 @@ struct AccountView: View {
                 }) {
                     Image(systemName: "plus")
                         .resizable()
-                        .foregroundColor(.white)
                         .padding(9)
                         .background(Circle().fill(Color(appColor: .purpleColor)))
                         .frame(width: 39, height: 39)
@@ -119,6 +119,7 @@ struct AccountView: View {
                 }
             }
             .font(.title)
+            .foregroundStyle(.white)
             .padding(.horizontal, 15)
             .padding(.vertical, 7)
         }
@@ -127,12 +128,18 @@ struct AccountView: View {
     }
     
     func contentIfUserHasMarketProduct() -> some View {
-        ZStack {
-            VStack {
-                if let products = viewModel.allProducts {
-                    ForEach(products, id: \.title) { product in
-                        Text(product.title)
-                            .foregroundStyle(.white)
+        VStack {
+            Text("Products on market:")
+                .font(.system(size: 21))
+            
+            ScrollView {
+                LazyVGrid(columns: flexibleColumn) {
+                    if let products = viewModel.allProducts {
+                        ForEach(products, id: \.title) { product in
+                            NavigationLink(destination: AccountNavigation.detail) {
+                                CellView(title: product.title)
+                            }
+                        }
                     }
                 }
             }

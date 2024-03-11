@@ -16,6 +16,7 @@ struct Product: Codable {
     let subcategory: String
     let location: String
     let contact: String
+    // delivery
     let dataCreated: Date?
     // docId
     

@@ -12,6 +12,7 @@ enum AccountNavigation: String, Hashable, Identifiable, View {
     case category
     case subcategory
     case productInfo
+    case detail
     
     var id: String {
         self.rawValue
@@ -27,6 +28,8 @@ enum AccountNavigation: String, Hashable, Identifiable, View {
             SubcategoryView(viewModel: SubcategoryViewModel())
         case .productInfo:
             ProductInfoView(viewModel: ProductInfoViewModel(), isShowing: .constant(false))
+        case .detail:
+            CellDetailView()
         }
     }
 }
