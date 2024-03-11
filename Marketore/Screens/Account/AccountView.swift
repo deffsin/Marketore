@@ -132,13 +132,11 @@ struct AccountView: View {
             Text("Products on market:")
                 .font(.system(size: 21))
             
-            ScrollView {
-                LazyVGrid(columns: flexibleColumn) {
-                    if let products = viewModel.allProducts {
-                        ForEach(products, id: \.title) { product in
-                            NavigationLink(destination: AccountNavigation.detail) {
-                                CellView(title: product.title)
-                            }
+            LazyVGrid(columns: flexibleColumn) {
+                if let products = viewModel.allProducts {
+                    ForEach(products, id: \.title) { product in
+                        NavigationLink(destination: AccountNavigation.detail) {
+                            CellView(title: product.title)
                         }
                     }
                 }
