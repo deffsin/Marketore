@@ -19,9 +19,9 @@ struct AccountView: View {
     
     @State private var scrollOffset: CGFloat = 0
     @State private var isStarFilled: Bool = false
-    
-    let flexibleColumn = [GridItem(.flexible()), GridItem(.flexible())]
-    
+    @State var Height: CGFloat = 150
+    @State var heightSecond: CGFloat = 130
+        
     var body: some View {
         NavigationStack {
             buildMainContent()
@@ -136,22 +136,30 @@ struct AccountView: View {
     
     func contentIfUserHasMarketProduct() -> some View {
         VStack {
-            Button("Filters") {
-                withAnimation(.easeInOut(duration: 1)) {
-                    viewModel.showFilters.toggle()
+            HStack(spacing: 15) {
+                Spacer()
+                Button(action: {
+                    withAnimation(.bouncy) {
+                        viewModel.showFilters.toggle()
+                    }
+                }) {
+                    Image(systemName: "text.justify")
+                        .font(.system(size: 23))
                 }
+                SquareAnimate(Height: $Height, heightSecond: $heightSecond)
             }
             
             Divider()
                 .background(Color(appColor: .whiteColor))
             
-            LazyVGrid(columns: flexibleColumn) {
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: Height), spacing: 10)], spacing: 10) {
                 if let products = viewModel.allProducts {
-                    ForEach(products, id: \.title) { product in
-                        NavigationLink(destination: AccountNavigation.detail(title: product.title)) {
-                            CellView(title: product.title)
+                    ForEach(products, id: \.title) { item in
+                        NavigationLink(destination: AccountNavigation.detail(title: item.title)) {
+                            CellView(title: item.title, height: heightSecond)
                         }
                     }
+                    .shadow(radius: 10)
                 }
             }
         }

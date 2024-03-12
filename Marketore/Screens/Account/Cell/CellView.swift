@@ -9,13 +9,13 @@ import SwiftUI
 
 struct CellView: View {
     @State var title: String?
+    @State var height: CGFloat?
     
     var body: some View {
         VStack(spacing: 5) {
-            Rectangle()
+            RoundedRectangle(cornerRadius: 6, style: .continuous)
                 .fill(.blue)
-                .frame(width: 160, height: 160, alignment: .center)
-                .cornerRadius(6)
+                .frame(height: height)
             
             Text(title ?? "Title")
                 .font(.system(size: 15))
