@@ -9,6 +9,7 @@ import SwiftUI
 
 class AppState: ObservableObject {
     @Published var isFullScreenCoverShown: Bool = false
+    @Published var isFiltersScreenShown: Bool = false
 }
 
 struct AccountView: View {
@@ -19,7 +20,7 @@ struct AccountView: View {
     @State private var scrollOffset: CGFloat = 0
     @State private var isStarFilled: Bool = false
     
-    let flexibleColumn = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+    let flexibleColumn = [GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
         NavigationStack {
@@ -36,7 +37,7 @@ struct AccountView: View {
             
             ScrollView {
                 HStack {
-                    // Spacer?
+                    Spacer()
                     VStack {
                         if let user = viewModel.user {
                             if user.hasMarketProduct! {
@@ -48,7 +49,7 @@ struct AccountView: View {
                     }
                     .foregroundStyle(.white)
                     .padding(.top, 10)
-                    // Spacer?
+                    Spacer()
                 }
                 .background(GeometryReader {
                     Color.clear.preference(key: ViewOffsetKey.self, value: $0.frame(in: .global).minY)
@@ -76,6 +77,12 @@ struct AccountView: View {
         .onChange(of: viewModel.isButton) { state in
             if state {
                 appState.isFullScreenCoverShown = true
+            }
+        }
+        .overlay {
+            if viewModel.showFilters {
+                filters()
+                    .transition(.opacity)
             }
         }
     }
@@ -129,8 +136,14 @@ struct AccountView: View {
     
     func contentIfUserHasMarketProduct() -> some View {
         VStack {
-            Text("Products on market:")
-                .font(.system(size: 21))
+            Button("Filters") {
+                withAnimation(.easeInOut(duration: 1)) {
+                    viewModel.showFilters.toggle()
+                }
+            }
+            
+            Divider()
+                .background(Color(appColor: .whiteColor))
             
             LazyVGrid(columns: flexibleColumn) {
                 if let products = viewModel.allProducts {
@@ -153,6 +166,30 @@ struct AccountView: View {
                 .opacity(0.8)
         }
         .foregroundStyle(.white)
+    }
+    
+    func filters() -> some View {
+        ZStack {
+            Color.black.opacity(0.3).ignoresSafeArea()
+                .onTapGesture {
+                    withAnimation(.easeIn) {
+                        viewModel.showFilters.toggle()
+                    }
+                }
+            
+            ZStack {
+                VStack(alignment: .leading, spacing: 20) {
+                    Text("Filters")
+                    .font(.system(size: 14))
+                }
+                .padding(.vertical, 30)
+                .padding(.horizontal, 15)
+            }
+            .frame(width: 330, height: 280)
+            .background(.white)
+            .cornerRadius(15)
+            .padding(.horizontal, 10)
+        }
     }
 }
 

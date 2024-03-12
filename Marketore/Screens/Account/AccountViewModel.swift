@@ -11,6 +11,7 @@ class AccountViewModel: ObservableObject {
     @Published private(set) var allProducts: [Product]? = nil
     @Published private(set) var user: UserModel? = nil
     @Published var isButton: Bool = false
+    @Published var showFilters: Bool = false
     
     init() {
         initiateUserDataLoading()

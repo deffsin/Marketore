@@ -9,7 +9,7 @@ import SwiftUI
 
 enum AccountNavigation: Hashable, Identifiable, View {
     var id: Self { self }
-
+    
     case account
     case category
     case subcategory

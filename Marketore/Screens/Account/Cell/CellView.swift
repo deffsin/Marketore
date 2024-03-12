@@ -14,11 +14,12 @@ struct CellView: View {
         VStack(spacing: 5) {
             Rectangle()
                 .fill(.blue)
-                .frame(width: 110, height: 100, alignment: .center)
+                .frame(width: 160, height: 160, alignment: .center)
                 .cornerRadius(6)
             
             Text(title ?? "Title")
                 .font(.system(size: 15))
+                .bold()
                 .lineLimit(1)
                 .truncationMode(.tail)
         }
