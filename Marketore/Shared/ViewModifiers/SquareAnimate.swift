@@ -58,7 +58,6 @@ struct SquareAnimate: View {
     @State var animation: Animation = .second(200)
     
     var body: some View {
-
         ZStack {
             RoundedRectangle(cornerRadius: 2, style: .circular)
                 .frame(width: 30, height: 25)

@@ -330,6 +330,7 @@
 				15893D582B66F7C5006BD88C /* ViewOffsetKey.swift */,
 				15F32FE32B8B9BB000A153AD /* InputField.swift */,
 				1503FC562B95CAFE0074B6BB /* SnackBar.swift */,
+				15595EBD2BA0AD8500B0D5DF /* SquareAnimate.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -339,7 +340,6 @@
 			children = (
 				15595EB42B9DC01B00B0D5DF /* CellView.swift */,
 				15595EB02B9DBFF400B0D5DF /* CellDetailView.swift */,
-				15595EBD2BA0AD8500B0D5DF /* SquareAnimate.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";

@@ -56,6 +56,7 @@ struct AccountView: View {
                 })
                 .padding(.horizontal, 15)
             }
+            .scrollBounceBehavior(.basedOnSize)
             .padding(.top, 50)
             .refreshable {
                 try? await viewModel.getUserData()
@@ -151,6 +152,7 @@ struct AccountView: View {
             
             Divider()
                 .background(Color(appColor: .whiteColor))
+                .padding(.top, 5)
             
             LazyVGrid(columns: [GridItem(.adaptive(minimum: Height), spacing: 10)], spacing: 10) {
                 if let products = viewModel.allProducts {
