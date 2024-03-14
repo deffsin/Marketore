@@ -61,6 +61,9 @@ struct ProductInfoView: View {
             .padding(.horizontal, 15)
             .padding(.top, 50)
             .animation(.easeInOut, value: isShowing)
+            .overlay {
+                customNavBar()
+            }
             .onChange(of: viewModel.isShowingSnackBar) {
                 withAnimation {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
@@ -68,14 +71,14 @@ struct ProductInfoView: View {
                     }
                 }
             }
-            .overlay {
-                customNavBar()
-            }
             .onChange(of: viewModel.isButton) { state in
                 print("\(state)")
                 if state {
                     appState.isFullScreenCoverShown = false
                 }
+            }
+            .onChange(of: viewModel.priceString) { newValue in
+                viewModel.convertPrice(priceString: newValue)
             }
         }
     }
@@ -133,7 +136,7 @@ struct ProductInfoView: View {
             textEditor()
             InputField(text: $viewModel.location, title: "Location:", keyboardType: .alphabet)
             InputField(text: $viewModel.contact, title: "Contact", keyboardType: .alphabet)
-            TextField("Price", value: $viewModel.price, formatter: NumberFormatter())
+            InputField(text: $viewModel.priceString, title: "Price")
         }
     }
     

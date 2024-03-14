@@ -18,6 +18,7 @@ class ProductInfoViewModel: ObservableObject {
     @Published var savedSubcategory: String?
     @Published var isShowingSnackBar: Bool = false
     @Published var isButton: Bool = false
+    @Published var priceString: String = ""
 
     var snackBarTimer: DispatchWorkItem?
     var allData = [String]()
@@ -108,5 +109,9 @@ class ProductInfoViewModel: ObservableObject {
         
         snackBarTimer = item
         DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: item)
+    }
+    
+    func convertPrice(priceString: String) {
+        self.price = Int(priceString) ?? 0
     }
 }

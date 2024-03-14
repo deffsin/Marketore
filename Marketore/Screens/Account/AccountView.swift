@@ -9,7 +9,6 @@ import SwiftUI
 
 class AppState: ObservableObject {
     @Published var isFullScreenCoverShown: Bool = false
-    @Published var isFiltersScreenShown: Bool = false
 }
 
 struct AccountView: View {
@@ -82,12 +81,6 @@ struct AccountView: View {
                 appState.isFullScreenCoverShown = true
             }
         }
-        //.overlay {
-        //    if viewModel.showFilters {
-        //        filters()
-        //            .transition(.opacity)
-        //    }
-        //}
     }
     
     func customNavBar(offset: CGFloat) -> some View {
