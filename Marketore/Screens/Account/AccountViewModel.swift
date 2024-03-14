@@ -12,6 +12,7 @@ class AccountViewModel: ObservableObject {
     @Published private(set) var user: UserModel? = nil
     @Published var isButton: Bool = false
     @Published var showFilters: Bool = false
+    @Published var selectedFilter: FilterOption? = nil
     
     init() {
         initiateUserDataLoading()
@@ -63,7 +64,7 @@ class AccountViewModel: ObservableObject {
         Task {
             do {
                 let authDataResult = try AuthenticationManager.shared.authenticatedUser()
-                let allProducts = try await ProductManager.shared.getAllProducts(userId: authDataResult.uid)
+                let allProducts = try await ProductManager.shared.getAllProducts(userId: authDataResult.uid, priceDescending: selectedFilter?.priceDescending)
                 DispatchQueue.main.async {
                     self.allProducts = allProducts
                 }
@@ -78,5 +79,12 @@ class AccountViewModel: ObservableObject {
         DispatchQueue.main.async {
             self.isButton.toggle()
         }
+    }
+    
+    func filterSelected(option: FilterOption) async throws {
+        DispatchQueue.main.async {
+            self.selectedFilter = option
+        }
+        try? await getProducts()
     }
 }

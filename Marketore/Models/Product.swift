@@ -12,6 +12,7 @@ struct Product: Codable {
     let userFullname: String?
     let title: String
     let description: String
+    let price: Int
     let category: String
     let subcategory: String
     let location: String
@@ -25,6 +26,7 @@ struct Product: Codable {
         self.userFullname = auth.name
         self.title = ""
         self.description = ""
+        self.price = 0
         self.category = ""
         self.subcategory = ""
         self.location = ""
@@ -37,6 +39,7 @@ struct Product: Codable {
         userFullname: String,
         title: String,
         description: String,
+        price: Int,
         category: String,
         subcategory: String,
         location: String,
@@ -47,6 +50,7 @@ struct Product: Codable {
         self.userFullname = userFullname
         self.title = title
         self.description = description
+        self.price = price
         self.category = category
         self.subcategory = subcategory
         self.location = location
@@ -59,6 +63,7 @@ struct Product: Codable {
         case userFullname = "user_fullname"
         case title = "title"
         case description = "description"
+        case price = "price"
         case category = "category"
         case subcategory = "subcategory"
         case location = "location"
@@ -73,6 +78,7 @@ struct Product: Codable {
         self.userFullname = try container.decodeIfPresent(String.self, forKey: .userFullname)
         self.title = try container.decode(String.self, forKey: .title)
         self.description = try container.decode(String.self, forKey: .description)
+        self.price = try container.decode(Int.self, forKey: .price)
         self.category = try container.decode(String.self, forKey: .category)
         self.subcategory = try container.decode(String.self, forKey: .subcategory)
         self.location = try container.decode(String.self, forKey: .location)
@@ -88,6 +94,7 @@ struct Product: Codable {
         try container.encode(self.title, forKey: .title)
         try container.encode(self.category, forKey: .category)
         try container.encode(self.description, forKey: .description)
+        try container.encode(self.price, forKey: .price)
         try container.encode(self.subcategory, forKey: .subcategory)
         try container.encode(self.location, forKey: .location)
         try container.encode(self.contact, forKey: .contact)

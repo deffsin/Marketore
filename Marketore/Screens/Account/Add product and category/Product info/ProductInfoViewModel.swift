@@ -10,6 +10,7 @@ import Foundation
 class ProductInfoViewModel: ObservableObject {
     @Published var title: String = ""
     @Published var description: String = ""
+    @Published var price: Int = 0
     @Published var location: String = ""
     @Published var contact: String = ""
     @Published var messageToUser: String?
@@ -54,7 +55,7 @@ class ProductInfoViewModel: ObservableObject {
             do {
                 let authUser = try AuthenticationManager.shared.authenticatedUser()
                 
-                try? await ProductManager.shared.saveProduct(id: authUser.uid, fullname: authUser.name ?? "", title: title, description: description, category: savedCategory!, subcategory: savedSubcategory!, location: location, contact: contact)
+                try? await ProductManager.shared.saveProduct(id: authUser.uid, fullname: authUser.name ?? "", title: title, description: description, price: price, category: savedCategory!, subcategory: savedSubcategory!, location: location, contact: contact)
                 clearUserDefaults()
                 DispatchQueue.main.async { [weak self] in
                     self?.isShowingSnackBar = true

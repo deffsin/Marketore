@@ -22,7 +22,7 @@ class ProductManager: ObservableObject {
         productCollection(userId: userId).document(productId)
     }
     
-    func saveProduct(id: String, fullname: String, title: String, description: String?, category: String, subcategory: String, location: String, contact: String) async throws {
+    func saveProduct(id: String, fullname: String, title: String, description: String?, price: Int, category: String, subcategory: String, location: String, contact: String) async throws {
         Task {
             do {
                 let document = productCollection(userId: id).document()
@@ -33,6 +33,7 @@ class ProductManager: ObservableObject {
                     Product.CodingKeys.userFullname.rawValue : fullname,
                     Product.CodingKeys.title.rawValue : title,
                     Product.CodingKeys.description.rawValue : description,
+                    Product.CodingKeys.price.rawValue : price,
                     Product.CodingKeys.category.rawValue : category,
                     Product.CodingKeys.subcategory.rawValue : subcategory,
                     Product.CodingKeys.location.rawValue : location,
@@ -47,10 +48,18 @@ class ProductManager: ObservableObject {
         }
     }
     
-    func getAllProducts(userId: String) async throws -> [Product] {
+    func getAllProducts(userId: String, priceDescending descending: Bool?) async throws -> [Product] {
         do {
             let snapshot = try await productCollection(userId: userId).getDocuments()
-            return snapshot.documents.compactMap { try? $0.data(as: Product.self) }
+            var products = snapshot.documents.compactMap { try? $0.data(as: Product.self) }
+            
+            products.sort { (product1: Product, product2: Product) -> Bool in
+                if let descending = descending {
+                    return descending ? product1.price > product2.price : product1.price < product2.price
+                }
+                return false
+            }
+            return products
             
         } catch {
             throw AppError.connectionFailed

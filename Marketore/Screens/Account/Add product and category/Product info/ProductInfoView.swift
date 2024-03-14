@@ -133,6 +133,7 @@ struct ProductInfoView: View {
             textEditor()
             InputField(text: $viewModel.location, title: "Location:", keyboardType: .alphabet)
             InputField(text: $viewModel.contact, title: "Contact", keyboardType: .alphabet)
+            TextField("Price", value: $viewModel.price, formatter: NumberFormatter())
         }
     }
     

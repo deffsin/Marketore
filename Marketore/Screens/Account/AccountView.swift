@@ -57,6 +57,8 @@ struct AccountView: View {
                 .padding(.horizontal, 15)
             }
             .scrollBounceBehavior(.basedOnSize)
+            .scrollTargetLayout() // ??????
+            .scrollTargetBehavior(.viewAligned)
             .padding(.top, 50)
             .refreshable {
                 try? await viewModel.getUserData()
@@ -80,12 +82,12 @@ struct AccountView: View {
                 appState.isFullScreenCoverShown = true
             }
         }
-        .overlay {
-            if viewModel.showFilters {
-                filters()
-                    .transition(.opacity)
-            }
-        }
+        //.overlay {
+        //    if viewModel.showFilters {
+        //        filters()
+        //            .transition(.opacity)
+        //    }
+        //}
     }
     
     func customNavBar(offset: CGFloat) -> some View {
@@ -139,14 +141,22 @@ struct AccountView: View {
         VStack {
             HStack(spacing: 15) {
                 Spacer()
-                Button(action: {
-                    withAnimation(.bouncy) {
-                        viewModel.showFilters.toggle()
+                
+                HStack(spacing: 3) {
+                    Image(systemName: "arrow.up.arrow.down")
+                    
+                    Menu("\(viewModel.selectedFilter?.rawValue ?? "No filter")") {
+                        ForEach(FilterOption.allCases, id: \.self) { option in
+                            Button(option.rawValue) {
+                                Task {
+                                    try? await viewModel.filterSelected(option: option)
+                                }
+                            }
+                        }
                     }
-                }) {
-                    Image(systemName: "text.justify")
-                        .font(.system(size: 23))
                 }
+                .font(.system(size: 17))
+                
                 SquareAnimate(Height: $Height, heightSecond: $heightSecond)
             }
             
@@ -176,30 +186,6 @@ struct AccountView: View {
                 .opacity(0.8)
         }
         .foregroundStyle(.white)
-    }
-    
-    func filters() -> some View {
-        ZStack {
-            Color.black.opacity(0.3).ignoresSafeArea()
-                .onTapGesture {
-                    withAnimation(.easeIn) {
-                        viewModel.showFilters.toggle()
-                    }
-                }
-            
-            ZStack {
-                VStack(alignment: .leading, spacing: 20) {
-                    Text("Filters")
-                    .font(.system(size: 14))
-                }
-                .padding(.vertical, 30)
-                .padding(.horizontal, 15)
-            }
-            .frame(width: 330, height: 280)
-            .background(.white)
-            .cornerRadius(15)
-            .padding(.horizontal, 10)
-        }
     }
 }
 
