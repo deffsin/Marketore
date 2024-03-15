@@ -18,13 +18,15 @@ class CategoryViewModel: ObservableObject, SaveDataUD {
     /// Initiation
     ///
     func initiateSavingCategory() {
-        saveDataAndNavigate()
+        Task {
+            try? await saveDataAndNavigate()
+        }
     }
     ///
     
     /// Data fetching and saving below
     ///
-    func saveDataAndNavigate() {
+    func saveDataAndNavigate() async throws  {
         if let selectedTag = selectedTag {
             UserDefaultsHelper.shared.setData(value: selectedTag.rawValue, key: .productCategory)
             DispatchQueue.main.async {

@@ -9,7 +9,7 @@ import SwiftUI
 
 class SubcategoryViewModel: ObservableObject, SaveDataUD, GetDataUD {
     @Published var savedProductCategory: String?
-    @Published var selectedTag: String? = ""
+    @Published var selectedTag: String?
     @Published var isButton: Bool = false
         
     var isTagSelected: Bool {

@@ -37,6 +37,7 @@ struct SubcategoryView: View {
                                     withAnimation {
                                         viewModel.selectedTag = tag.rawValue
                                     }
+                                    print("\(String(describing: viewModel.selectedTag))")
                                 }
                         }
                     } else if viewModel.savedProductCategory == "phones" {
@@ -46,7 +47,7 @@ struct SubcategoryView: View {
                                     withAnimation {
                                         viewModel.selectedTag = tag.rawValue
                                     }
-                                }
+                                    print("\(String(describing: viewModel.selectedTag))")                                }
                         }
                     }
                 }
