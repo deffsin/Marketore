@@ -18,8 +18,6 @@ struct AccountView: View {
     
     @State private var scrollOffset: CGFloat = 0
     @State private var isStarFilled: Bool = false
-    @State var Height: CGFloat = 150
-    @State var heightSecond: CGFloat = 130
         
     var body: some View {
         NavigationStack {
@@ -149,19 +147,17 @@ struct AccountView: View {
                     }
                 }
                 .font(.system(size: 17))
-                
-                SquareAnimate(Height: $Height, heightSecond: $heightSecond)
             }
             
             Divider()
                 .background(Color(appColor: .whiteColor))
                 .padding(.top, 5)
             
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: Height), spacing: 10)], spacing: 10) {
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 10)], spacing: 10) {
                 if let products = viewModel.allProducts {
                     ForEach(products, id: \.title) { item in
                         NavigationLink(destination: AccountNavigation.detail(title: item.title, description: item.description, price: item.price, location: item.location, contact: item.contact)) {
-                            CellView(title: item.title, height: heightSecond)
+                            CellView(title: item.title)
                         }
                     }
                     .shadow(radius: 10)

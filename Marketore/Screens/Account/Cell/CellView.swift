@@ -15,7 +15,7 @@ struct CellView: View {
         VStack(spacing: 5) {
             RoundedRectangle(cornerRadius: 6, style: .continuous)
                 .fill(.blue)
-                .frame(height: height)
+                .frame(width: 160, height: 180)
             
             Text(title ?? "Title")
                 .font(.system(size: 15))
