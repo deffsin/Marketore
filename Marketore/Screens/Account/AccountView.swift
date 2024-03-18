@@ -53,9 +53,6 @@ struct AccountView: View {
                 })
                 .padding(.horizontal, 15)
             }
-            .scrollBounceBehavior(.basedOnSize)
-            .scrollTargetLayout() // ??????
-            .scrollTargetBehavior(.viewAligned)
             .padding(.top, 50)
             .refreshable {
                 try? await viewModel.getUserData()
