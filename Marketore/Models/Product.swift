@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Product: Codable {
+    let productId: String
     let userId: String
     let userFullname: String?
     let title: String
@@ -22,6 +23,7 @@ struct Product: Codable {
     // docId
     
     init(auth: AuthDataResultModel) {
+        self.productId = ""
         self.userId = auth.uid
         self.userFullname = auth.name
         self.title = ""
@@ -35,6 +37,7 @@ struct Product: Codable {
     }
     
     init(
+        productId: String,
         userId: String,
         userFullname: String,
         title: String,
@@ -46,6 +49,7 @@ struct Product: Codable {
         contact: String,
         dataCreated: Date? = nil
     ) {
+        self.productId = productId
         self.userId = userId
         self.userFullname = userFullname
         self.title = title
@@ -59,6 +63,7 @@ struct Product: Codable {
     }
     
     enum CodingKeys: String, CodingKey {
+        case productId = "product_id"
         case userId = "user_id"
         case userFullname = "user_fullname"
         case title = "title"
@@ -74,6 +79,7 @@ struct Product: Codable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
+        self.productId = try container.decode(String.self, forKey: .productId)
         self.userId = try container.decode(String.self, forKey: .userId)
         self.userFullname = try container.decodeIfPresent(String.self, forKey: .userFullname)
         self.title = try container.decode(String.self, forKey: .title)
@@ -89,6 +95,7 @@ struct Product: Codable {
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
+        try container.encode(self.productId, forKey: .productId)
         try container.encode(self.userId, forKey: .userId)
         try container.encode(self.userFullname, forKey: .userFullname)
         try container.encode(self.title, forKey: .title)

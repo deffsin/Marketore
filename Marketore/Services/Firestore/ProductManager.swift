@@ -28,7 +28,8 @@ class ProductManager: ObservableObject {
                 let document = productCollection(userId: id).document()
                 let documentId = document.documentID
                 
-                let data: [String:Any] = [
+                let data: [String: Any] = [
+                    Product.CodingKeys.productId.rawValue : documentId,
                     Product.CodingKeys.userId.rawValue : id,
                     Product.CodingKeys.userFullname.rawValue : fullname,
                     Product.CodingKeys.title.rawValue : title,
@@ -64,5 +65,9 @@ class ProductManager: ObservableObject {
         } catch {
             throw AppError.connectionFailed
         }
+    }
+    
+    func removeProduct(userId: String, productId: String) async throws {
+        try await productDocument(userId: userId, productId: productId).delete()
     }
 }

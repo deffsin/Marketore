@@ -9,7 +9,6 @@ import SwiftUI
 
 struct CellView: View {
     @State var title: String?
-    @State var height: CGFloat?
     
     var body: some View {
         VStack(spacing: 5) {

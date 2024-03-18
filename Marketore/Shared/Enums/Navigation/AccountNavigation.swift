@@ -14,7 +14,7 @@ enum AccountNavigation: Hashable, Identifiable, View {
     case category
     case subcategory
     case productInfo
-    case detail(title: String, description: String, price: Int, location: String, contact: String)
+    case detail(productId: String, title: String, description: String, price: Int, location: String, contact: String)
     
     var body: some View {
         switch self {
@@ -26,8 +26,8 @@ enum AccountNavigation: Hashable, Identifiable, View {
             SubcategoryView(viewModel: SubcategoryViewModel())
         case .productInfo:
             ProductInfoView(viewModel: ProductInfoViewModel(), isShowing: .constant(false))
-        case .detail(let title, let description, let price, let location, let contact):
-            CellDetailView(title: title, description: description, price: price, location: location, contact: contact)
+        case .detail(let productId, let title, let description, let price, let location, let contact):
+            CellDetailView(productId: productId, title: title, description: description, price: price, location: location, contact: contact)
         }
     }
 }

@@ -152,8 +152,8 @@ struct AccountView: View {
             
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 10)], spacing: 10) {
                 if let products = viewModel.allProducts {
-                    ForEach(products, id: \.title) { item in
-                        NavigationLink(destination: AccountNavigation.detail(title: item.title, description: item.description, price: item.price, location: item.location, contact: item.contact)) {
+                    ForEach(products, id: \.productId) { item in // id: \.id, not title
+                        NavigationLink(destination: AccountNavigation.detail(productId: item.productId, title: item.title, description: item.description, price: item.price, location: item.location, contact: item.contact)) {
                             CellView(title: item.title)
                         }
                     }
