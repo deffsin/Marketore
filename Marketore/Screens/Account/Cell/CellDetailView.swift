@@ -10,11 +10,13 @@ import SwiftUI
 struct CellDetailView: View {
     @Environment(\.dismiss) var dismiss
     
+    @State var productId: String?
     @State var title: String?
     @State var description: String?
     @State var price: Int?
     @State var location: String?
     @State var contact: String?
+    @State var removeMarketplaceItemAlert: Bool = false
     
     var body: some View {
         ZStack {
@@ -56,8 +58,8 @@ struct CellDetailView: View {
                 .frame(height: 350)
         }
         .overlay {
-            backButtonView()
-                .offset(x: -170, y: -140)
+            buttonsOnTheImage()
+                .offset(y: -140)
         }
     }
     
@@ -90,7 +92,7 @@ struct CellDetailView: View {
                     Text("Price:")
                         .bold()
                         .font(.system(size: 19))
-
+                    
                     Text("\(price ?? 0)")
                 }
                 
@@ -105,7 +107,7 @@ struct CellDetailView: View {
                 }
             }
             .font(.system(size: 16))
-
+            
             Divider()
                 .background(.white)
             
@@ -136,8 +138,55 @@ struct CellDetailView: View {
                 .opacity(0.9)
         }
     }
+    
+    func deleteButtonView() -> some View {
+        Button(action: {
+            removeMarketplaceItemAlert = true
+        }) {
+            Image(systemName: "trash")
+                .font(.system(size: 18))
+                .foregroundStyle(.black)
+                .padding(7)
+                .background(Color(appColor: .whiteColor))
+                .clipShape(Circle())
+                .opacity(0.9)
+        }
+        .alert("Deletion notification", isPresented: $removeMarketplaceItemAlert) {
+            Button("Remove", role: .destructive) {
+                removeItemFromMarketplace(productId: productId!) {
+                    dismiss()
+                }
+            }
+        } message: {
+            Text("Are you sure you want to remove item from the marketplace?")
+        }
+    }
+    
+    func buttonsOnTheImage() -> some View {
+        HStack {
+            backButtonView()
+            
+            Spacer()
+            
+            deleteButtonView()
+        }
+        .padding(.horizontal, 15)
+    }
 }
 
 #Preview {
     CellDetailView()
+}
+
+extension CellDetailView {
+    func removeItemFromMarketplace(productId: String, completion: @escaping () -> Void) {
+        Task {
+            let authDataResult = try AuthenticationManager.shared.authenticatedUser()
+            try? await ProductManager.shared.removeProduct(userId: authDataResult.uid, productId: productId)
+            
+            DispatchQueue.main.async {
+                completion()
+            }
+        }
+    }
 }
