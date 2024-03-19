@@ -12,6 +12,7 @@ struct MarketView: View {
     
     var body: some View {
         Text("MarketView")
+        // test
     }
 }
 
