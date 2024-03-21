@@ -41,4 +41,12 @@ class UserManager {
             throw AppError.connectionFailed
         }
     }
+    
+    func updateUserProductStatus(userId: String, value: Bool) async throws {
+        let data: [String: Any] = [
+            UserModel.CodingKeys.hasMarketProduct.rawValue : value
+        ]
+        
+        try await userDocument(userId: userId).updateData(data)
+    }
 }

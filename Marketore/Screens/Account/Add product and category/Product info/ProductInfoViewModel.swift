@@ -19,7 +19,7 @@ class ProductInfoViewModel: ObservableObject {
     @Published var isShowingSnackBar: Bool = false
     @Published var isButton: Bool = false
     @Published var priceString: String = ""
-
+    
     var snackBarTimer: DispatchWorkItem?
     var allData = [String]()
     var dataIsValid: Bool {
@@ -57,6 +57,7 @@ class ProductInfoViewModel: ObservableObject {
                 let authUser = try AuthenticationManager.shared.authenticatedUser()
                 
                 try? await ProductManager.shared.saveProduct(id: authUser.uid, fullname: authUser.name ?? "", title: title, description: description, price: price, category: savedCategory!, subcategory: savedSubcategory!, location: location, contact: contact)
+                updateUserProductStatus()
                 clearUserDefaults()
                 DispatchQueue.main.async { [weak self] in
                     self?.isShowingSnackBar = true
@@ -66,7 +67,7 @@ class ProductInfoViewModel: ObservableObject {
                     self?.isButton = true
                 }
             } catch {
-                AppError.connectionFailed
+                throw AppError.connectionFailed
             }
         }
     }
@@ -113,5 +114,17 @@ class ProductInfoViewModel: ObservableObject {
     
     func convertPrice(priceString: String) {
         self.price = Int(priceString) ?? 0
+    }
+    
+    func updateUserProductStatus() {
+        Task {
+            do {
+                let authUser = try AuthenticationManager.shared.authenticatedUser()
+                try? await UserManager.shared.updateUserProductStatus(userId: authUser.uid, value: true)
+                
+            } catch {
+                throw AppError.unknownError
+            }
+        }
     }
 }
