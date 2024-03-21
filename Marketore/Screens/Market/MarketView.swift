@@ -26,14 +26,9 @@ struct MarketView: View {
             
             ScrollView {
                 HStack {
-                    //Spacer()
-                    if let products = viewModel.allProducts {
-                        ForEach(products, id: \.productId) { product in
-                            Text(product.title)
-                                .foregroundStyle(.white)
-                        }
-                    }
-                    //Spacer()
+                    Spacer()
+                    filterAndProductsView()
+                    Spacer()
                 }
                 .background(GeometryReader {
                     Color.clear.preference(key: ViewOffsetKey.self, value: $0.frame(in: .global).minY)
@@ -46,10 +41,14 @@ struct MarketView: View {
                     self.scrollOffset = offset
                 }
             }
+            .refreshable {
+                try? await viewModel.getProducts()
+            }
             .overlay {
                 customNavBar(offset: scrollOffset)
             }
         }
+        .foregroundStyle(.white)
     }
     
     func customNavBar(offset: CGFloat) -> some View {
@@ -66,7 +65,17 @@ struct MarketView: View {
             
             HStack {
                 Spacer()
+                
+                ZStack { }
+                .padding(9)
+                .frame(width: 39, height: 48)
+                
                 Text("Market")
+                
+                ZStack { }
+                .padding(9)
+                .frame(width: 39, height: 48)
+                
                 Spacer()
             }
             .font(.title)
@@ -78,7 +87,7 @@ struct MarketView: View {
         .frame(maxHeight: .infinity, alignment: .top)
     }
     
-    func productsView() -> some View {
+    func filterAndProductsView() -> some View {
         VStack {
             HStack(spacing: 15) {
                 Spacer()
@@ -90,7 +99,7 @@ struct MarketView: View {
                         ForEach(FilterOption.allCases, id: \.self) { option in
                             Button(option.rawValue) {
                                 Task {
-                                    // try? await viewModel.filterSelected(option: option)
+                                    try? await viewModel.filterSelected(option: option)
                                 }
                             }
                         }
@@ -105,8 +114,8 @@ struct MarketView: View {
             
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 10)], spacing: 10) {
                 if let products = viewModel.allProducts {
-                    ForEach(products, id: \.productId) { item in // id: \.id, not title
-                        NavigationLink(destination: AccountNavigation.detail(productId: item.productId, title: item.title, description: item.description, price: item.price, location: item.location, contact: item.contact)) {
+                    ForEach(products, id: \.productId) { item in
+                        NavigationLink(destination: MarketNavigation.detail(productId: item.productId, title: item.title, description: item.description, price: item.price, location: item.location, contact: item.contact)) {
                             CellView(title: item.title)
                         }
                     }
@@ -114,6 +123,7 @@ struct MarketView: View {
                 }
             }
         }
+        .padding(.top, 10)
     }
 }
 
