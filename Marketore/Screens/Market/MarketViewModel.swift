@@ -14,6 +14,8 @@ class MarketViewModel: ObservableObject {
     @Published var showFilters: Bool = false
     @Published var selectedFilter: FilterOption? = nil
     
+    @Published var testProducts = []
+    
     init() {
         initiateUserDataLoading()
         initiateUsersDataLoading()
@@ -81,12 +83,15 @@ class MarketViewModel: ObservableObject {
         Task {
             do {
                 guard let userIds = users?.compactMap({ $0.userId }) else { return }
+                var combinedProducts = [Product]()
+                
                 for user in userIds {
                     let products = try await ProductManager.shared.getAllProducts(userId: user, priceDescending: selectedFilter?.priceDescending)
-
-                    DispatchQueue.main.async {
-                        self.allProducts = products
-                    }
+                    combinedProducts.append(contentsOf: products)
+                }
+                
+                DispatchQueue.main.async {
+                    self.allProducts = combinedProducts
                 }
             } catch {
                 AppError.connectionFailed
