@@ -13,9 +13,7 @@ class MarketViewModel: ObservableObject {
     @Published private(set) var user: UserModel? = nil
     @Published var showFilters: Bool = false
     @Published var selectedFilter: FilterOption? = nil
-    
-    @Published var testProducts = []
-    
+        
     init() {
         initiateUserDataLoading()
         initiateUsersDataLoading()
