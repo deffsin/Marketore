@@ -1,5 +1,5 @@
 //
-//  CellDetailView.swift
+//  AccountCellDetailView.swift
 //  Marketore
 //
 //  Created by Denis Sinitsa on 10.03.2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CellDetailView: View {
+struct AccountCellDetailView: View {
     @Environment(\.dismiss) var dismiss
     
     @State var productId: String?
@@ -175,10 +175,10 @@ struct CellDetailView: View {
 }
 
 #Preview {
-    CellDetailView()
+    AccountCellDetailView()
 }
 
-extension CellDetailView {
+extension AccountCellDetailView {
     func removeItemFromMarketplace(productId: String, completion: @escaping () -> Void) {
         Task {
             let authDataResult = try AuthenticationManager.shared.authenticatedUser()

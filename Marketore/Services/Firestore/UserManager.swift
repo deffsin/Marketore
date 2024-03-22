@@ -16,8 +16,19 @@ class UserManager {
     func getUser(userId: String) async throws -> UserModel {
         do {
             let user = try await userDocument(userId: userId).getDocument(as: UserModel.self)
-            return user
             
+            return user
+        } catch {
+            throw AppError.connectionFailed
+        }
+    }
+    
+    func getAllUsers() async throws -> [UserModel] {
+        do {
+            let snapshot = try await userCollection.getDocuments()
+            var users = snapshot.documents.compactMap { try? $0.data(as: UserModel.self) }
+            
+            return users
         } catch {
             throw AppError.connectionFailed
         }
@@ -29,5 +40,13 @@ class UserManager {
         } catch {
             throw AppError.connectionFailed
         }
+    }
+    
+    func updateUserProductStatus(userId: String, value: Bool) async throws {
+        let data: [String: Any] = [
+            UserModel.CodingKeys.hasMarketProduct.rawValue : value
+        ]
+        
+        try await userDocument(userId: userId).updateData(data)
     }
 }

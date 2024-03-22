@@ -27,7 +27,7 @@ enum AccountNavigation: Hashable, Identifiable, View {
         case .productInfo:
             ProductInfoView(viewModel: ProductInfoViewModel(), isShowing: .constant(false))
         case .detail(let productId, let title, let description, let price, let location, let contact):
-            CellDetailView(productId: productId, title: title, description: description, price: price, location: location, contact: contact)
+            AccountCellDetailView(productId: productId, title: title, description: description, price: price, location: location, contact: contact)
         }
     }
 }
