@@ -42,6 +42,10 @@ struct ProductInfoView: View {
                         
                     }
                     
+                    imagePickerButton()
+                    
+                    uploadImageButton()
+                                        
                     styledButton()
                         .padding(.top, 70)
                     
@@ -80,6 +84,9 @@ struct ProductInfoView: View {
             .onChange(of: viewModel.priceString) { newValue in
                 viewModel.convertPrice(priceString: newValue)
             }
+        }
+        .sheet(isPresented: $viewModel.isPickerShowing, onDismiss: nil) {
+            ImagePicker(selectedImage: $viewModel.selectedImage)
         }
     }
     
@@ -189,6 +196,24 @@ struct ProductInfoView: View {
         .background {
             Capsule()
                 .fill(Color(appColor: .purpleColor))
+        }
+    }
+    
+    func imagePickerButton() -> some View {
+        Button(action: {
+            viewModel.isPickerShowing.toggle()
+        }) {
+            Text("Select image")
+                .font(.system(size: 15))
+        }
+    }
+    
+    func uploadImageButton() -> some View {
+        Button(action:  {
+            viewModel.uploadPhoto()
+        }) {
+            Text("Upload image")
+                .font(.system(size: 15))
         }
     }
     

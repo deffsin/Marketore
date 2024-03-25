@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import FirebaseStorage
+import UIKit
 
 class ProductInfoViewModel: ObservableObject {
     @Published var title: String = ""
@@ -19,6 +21,9 @@ class ProductInfoViewModel: ObservableObject {
     @Published var isShowingSnackBar: Bool = false
     @Published var isButton: Bool = false
     @Published var priceString: String = ""
+    
+    @Published var isPickerShowing = false
+    @Published var selectedImage: UIImage?
     
     var snackBarTimer: DispatchWorkItem?
     var allData = [String]()
@@ -124,6 +129,28 @@ class ProductInfoViewModel: ObservableObject {
                 
             } catch {
                 throw AppError.unknownError
+            }
+        }
+    }
+    
+    func uploadPhoto() {
+        guard selectedImage != nil else {
+            return
+        }
+    
+        let storageRef = Storage.storage().reference()
+    
+        let imageData = selectedImage!.jpegData(compressionQuality: 0.8)
+    
+        guard imageData != nil else {
+            return
+        }
+    
+        let fileRef = storageRef.child("images/products/\(UUID().uuidString).jpg")
+    
+        let uploadTask = fileRef.putData(imageData!, metadata: nil) { metadata, error in
+            if error == nil && metadata != nil {
+    
             }
         }
     }

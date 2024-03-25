@@ -71,6 +71,7 @@
 		1599A4722B751ACF004B76F6 /* SubcategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1599A4712B751ACF004B76F6 /* SubcategoryViewModel.swift */; };
 		1599A4742B751ADA004B76F6 /* SubcategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1599A4732B751ADA004B76F6 /* SubcategoryView.swift */; };
 		159ED9BF2BA3777400E6D57D /* FilterOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159ED9BE2BA3777400E6D57D /* FilterOption.swift */; };
+		15AF2B7D2BB0686400EFD7EA /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AF2B7C2BB0686400EFD7EA /* ImagePicker.swift */; };
 		15AF5FD82B83F762007173AF /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AF5FD72B83F762007173AF /* UserDefaultsHelper.swift */; };
 		15AF5FDC2B867422007173AF /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AF5FDB2B867422007173AF /* Product.swift */; };
 		15AF5FDE2B8676C7007173AF /* UserDefaultsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15AF5FDD2B8676C7007173AF /* UserDefaultsProtocols.swift */; };
@@ -133,6 +134,7 @@
 		1599A4712B751ACF004B76F6 /* SubcategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcategoryViewModel.swift; sourceTree = "<group>"; };
 		1599A4732B751ADA004B76F6 /* SubcategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubcategoryView.swift; sourceTree = "<group>"; };
 		159ED9BE2BA3777400E6D57D /* FilterOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOption.swift; sourceTree = "<group>"; };
+		15AF2B7C2BB0686400EFD7EA /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		15AF5FD72B83F762007173AF /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		15AF5FDB2B867422007173AF /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		15AF5FDD2B8676C7007173AF /* UserDefaultsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsProtocols.swift; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 				15893D582B66F7C5006BD88C /* ViewOffsetKey.swift */,
 				15F32FE32B8B9BB000A153AD /* InputField.swift */,
 				1503FC562B95CAFE0074B6BB /* SnackBar.swift */,
+				15AF2B7C2BB0686400EFD7EA /* ImagePicker.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -606,6 +609,7 @@
 				1503FC542B9355BD0074B6BB /* AccountNavigation.swift in Sources */,
 				1503FC572B95CAFE0074B6BB /* SnackBar.swift in Sources */,
 				1599A4742B751ADA004B76F6 /* SubcategoryView.swift in Sources */,
+				15AF2B7D2BB0686400EFD7EA /* ImagePicker.swift in Sources */,
 				15595EB12B9DBFF500B0D5DF /* AccountCellDetailView.swift in Sources */,
 				1520DC642B65352200C9EDAF /* UserManager.swift in Sources */,
 				15893D412B66CD28006BD88C /* TabBarView.swift in Sources */,
