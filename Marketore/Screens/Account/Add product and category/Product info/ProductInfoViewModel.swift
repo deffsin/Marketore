@@ -25,6 +25,7 @@ class ProductInfoViewModel: ObservableObject {
     @Published var isPickerShowing = false
     @Published var selectedImage: UIImage?
     
+    var authUser: String? // user ID
     var snackBarTimer: DispatchWorkItem?
     var allData = [String]()
     var dataIsValid: Bool {
@@ -36,6 +37,7 @@ class ProductInfoViewModel: ObservableObject {
     
     init() {
         getData()
+        getAuthenticatedUser()
     }
     
     /// Initiation
@@ -56,6 +58,18 @@ class ProductInfoViewModel: ObservableObject {
     
     /// Data fetching and saving below
     ///
+    func getAuthenticatedUser() {
+        Task {
+            do {
+                let authenticatedUser = try AuthenticationManager.shared.authenticatedUser()
+                self.authUser = authenticatedUser.uid
+                
+            } catch {
+                throw AppError.unknownError
+            }
+        }
+    }
+    
     func addProductData() async throws {
         Task {
             do {
@@ -124,8 +138,7 @@ class ProductInfoViewModel: ObservableObject {
     func updateUserProductStatus() {
         Task {
             do {
-                let authUser = try AuthenticationManager.shared.authenticatedUser()
-                try? await UserManager.shared.updateUserProductStatus(userId: authUser.uid, value: true)
+                try? await UserManager.shared.updateUserProductStatus(userId: authUser!, value: true)
                 
             } catch {
                 throw AppError.unknownError
@@ -137,7 +150,7 @@ class ProductInfoViewModel: ObservableObject {
         guard selectedImage != nil else {
             return
         }
-    
+            
         let storageRef = Storage.storage().reference()
     
         let imageData = selectedImage!.jpegData(compressionQuality: 0.8)
@@ -146,7 +159,7 @@ class ProductInfoViewModel: ObservableObject {
             return
         }
     
-        let fileRef = storageRef.child("images/products/\(UUID().uuidString).jpg")
+        let fileRef = storageRef.child("images/products/\(String(describing: authUser!)).jpg")
     
         let uploadTask = fileRef.putData(imageData!, metadata: nil) { metadata, error in
             if error == nil && metadata != nil {
