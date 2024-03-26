@@ -54,6 +54,7 @@
 		1520DC6B2B65355300C9EDAF /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1520DC6A2B65355300C9EDAF /* AppError.swift */; };
 		1520DC6D2B6536F500C9EDAF /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1520DC6C2B6536F400C9EDAF /* RootView.swift */; };
 		1520DC702B65391A00C9EDAF /* SocialMediaButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1520DC6F2B65391A00C9EDAF /* SocialMediaButton.swift */; };
+		15469F372BB2E5B4005A630E /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15469F362BB2E5B4005A630E /* ImagePicker.swift */; };
 		15595EB12B9DBFF500B0D5DF /* AccountCellDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15595EB02B9DBFF400B0D5DF /* AccountCellDetailView.swift */; };
 		15595EB52B9DC01B00B0D5DF /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15595EB42B9DC01B00B0D5DF /* CellView.swift */; };
 		1563165F2BAC35F000F990E8 /* MarketCellDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1563165E2BAC35F000F990E8 /* MarketCellDetailView.swift */; };
@@ -116,6 +117,7 @@
 		1520DC6A2B65355300C9EDAF /* AppError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		1520DC6C2B6536F400C9EDAF /* RootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		1520DC6F2B65391A00C9EDAF /* SocialMediaButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialMediaButton.swift; sourceTree = "<group>"; };
+		15469F362BB2E5B4005A630E /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		15595EB02B9DBFF400B0D5DF /* AccountCellDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCellDetailView.swift; sourceTree = "<group>"; };
 		15595EB42B9DC01B00B0D5DF /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		1563165E2BAC35F000F990E8 /* MarketCellDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketCellDetailView.swift; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 				15893D582B66F7C5006BD88C /* ViewOffsetKey.swift */,
 				15F32FE32B8B9BB000A153AD /* InputField.swift */,
 				1503FC562B95CAFE0074B6BB /* SnackBar.swift */,
+				15469F362BB2E5B4005A630E /* ImagePicker.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -624,6 +627,7 @@
 				15893D4D2B66D070006BD88C /* AccountViewModel.swift in Sources */,
 				1520DC672B65352200C9EDAF /* SignInGoogleHelper.swift in Sources */,
 				15AF5FDE2B8676C7007173AF /* UserDefaultsProtocols.swift in Sources */,
+				15469F372BB2E5B4005A630E /* ImagePicker.swift in Sources */,
 				15893D422B66CD28006BD88C /* TabBar.swift in Sources */,
 				15B6E8062B98A37A00627D3F /* ProductManager.swift in Sources */,
 				1520DC052B63A3B000C9EDAF /* MarketoreApp.swift in Sources */,
