@@ -20,6 +20,7 @@ struct Product: Codable {
     let contact: String
     // delivery
     let dataCreated: Date?
+    let url: String
     // docId
     
     init(auth: AuthDataResultModel) {
@@ -34,6 +35,7 @@ struct Product: Codable {
         self.location = ""
         self.contact = ""
         self.dataCreated = Date()
+        self.url = ""
     }
     
     init(
@@ -47,7 +49,8 @@ struct Product: Codable {
         subcategory: String,
         location: String,
         contact: String,
-        dataCreated: Date? = nil
+        dataCreated: Date? = nil,
+        url: String
     ) {
         self.productId = productId
         self.userId = userId
@@ -60,6 +63,7 @@ struct Product: Codable {
         self.location = location
         self.contact = contact
         self.dataCreated = dataCreated
+        self.url = url
     }
     
     enum CodingKeys: String, CodingKey {
@@ -74,6 +78,7 @@ struct Product: Codable {
         case location = "location"
         case contact = "contact"
         case dataCreated = "data_created"
+        case url = "url"
     }
     
     init(from decoder: Decoder) throws {
@@ -90,6 +95,7 @@ struct Product: Codable {
         self.location = try container.decode(String.self, forKey: .location)
         self.contact = try container.decode(String.self, forKey: .contact)
         self.dataCreated = try container.decodeIfPresent(Date.self, forKey: .dataCreated)
+        self.url = try container.decode(String.self, forKey: .url)
     }
     
     func encode(to encoder: Encoder) throws {
@@ -106,5 +112,6 @@ struct Product: Codable {
         try container.encode(self.location, forKey: .location)
         try container.encode(self.contact, forKey: .contact)
         try container.encode(self.dataCreated, forKey: .dataCreated)
+        try container.encode(self.url, forKey: .url)
     }
 }

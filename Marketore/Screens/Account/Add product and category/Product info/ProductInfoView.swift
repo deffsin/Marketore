@@ -32,9 +32,7 @@ struct ProductInfoView: View {
                 VStack {
                     header()
                         .padding([.horizontal, .vertical], 10)
-                    
-                    /// Photo....
-                    
+                                        
                     VStack(spacing: 15) {
                         textFields()
                         
@@ -43,9 +41,7 @@ struct ProductInfoView: View {
                     }
                     
                     imagePickerButton()
-                    
-                    uploadImageButton()
-                                        
+                                                            
                     styledButton()
                         .padding(.top, 70)
                     
@@ -204,15 +200,6 @@ struct ProductInfoView: View {
             viewModel.isPickerShowing.toggle()
         }) {
             Text("Select image")
-                .font(.system(size: 15))
-        }
-    }
-    
-    func uploadImageButton() -> some View {
-        Button(action:  {
-            viewModel.uploadPhoto()
-        }) {
-            Text("Upload image")
                 .font(.system(size: 15))
         }
     }

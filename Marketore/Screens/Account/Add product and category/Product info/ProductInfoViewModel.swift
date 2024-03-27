@@ -75,9 +75,10 @@ class ProductInfoViewModel: ObservableObject {
             do {
                 let authUser = try AuthenticationManager.shared.authenticatedUser()
                 
-                try? await ProductManager.shared.saveProduct(id: authUser.uid, fullname: authUser.name ?? "", title: title, description: description, price: price, category: savedCategory!, subcategory: savedSubcategory!, location: location, contact: contact)
+                try? await ProductManager.shared.saveProduct(id: authUser.uid, fullname: authUser.name ?? "", title: title, description: description, price: price, category: savedCategory!, subcategory: savedSubcategory!, location: location, contact: contact, selectedImage: selectedImage!)
                 updateUserProductStatus()
                 clearUserDefaults()
+                
                 DispatchQueue.main.async { [weak self] in
                     self?.isShowingSnackBar = true
                     self?.messageToUser = "A product was successfully added 🎉"
@@ -142,28 +143,6 @@ class ProductInfoViewModel: ObservableObject {
                 
             } catch {
                 throw AppError.unknownError
-            }
-        }
-    }
-    
-    func uploadPhoto() {
-        guard selectedImage != nil else {
-            return
-        }
-            
-        let storageRef = Storage.storage().reference()
-    
-        let imageData = selectedImage!.jpegData(compressionQuality: 0.8)
-    
-        guard imageData != nil else {
-            return
-        }
-    
-        let fileRef = storageRef.child("images/products/\(String(describing: authUser!)).jpg")
-    
-        let uploadTask = fileRef.putData(imageData!, metadata: nil) { metadata, error in
-            if error == nil && metadata != nil {
-    
             }
         }
     }
