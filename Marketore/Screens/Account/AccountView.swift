@@ -36,6 +36,11 @@ struct AccountView: View {
                 HStack {
                     Spacer()
                     VStack {
+                        ForEach(viewModel.retrievedImages, id: \.self) { image in
+                            Image(uiImage: image)
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                        }
                         if let user = viewModel.user {
                             if user.hasMarketProduct! {
                                 contentIfUserHasMarketProduct()
@@ -154,7 +159,7 @@ struct AccountView: View {
                 if let products = viewModel.allProducts {
                     ForEach(products, id: \.productId) { item in
                         NavigationLink(destination: AccountNavigation.detail(productId: item.productId, title: item.title, description: item.description, price: item.price, location: item.location, contact: item.contact)) {
-                            CellView(title: item.title)
+                            CellView(title: item.title, imageURL: item.url)
                         }
                     }
                     .shadow(radius: 10)

@@ -24,6 +24,7 @@ class ProductInfoViewModel: ObservableObject {
     
     @Published var isPickerShowing = false
     @Published var selectedImage: UIImage?
+    @Published var retrievedImages = [UIImage]()
     
     var authUser: String? // user ID
     var snackBarTimer: DispatchWorkItem?

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseStorage
 
 class AccountViewModel: ObservableObject {
     @Published private(set) var allProducts: [Product]? = nil
@@ -13,6 +14,9 @@ class AccountViewModel: ObservableObject {
     @Published var isButton: Bool = false
     @Published var showFilters: Bool = false
     @Published var selectedFilter: FilterOption? = nil
+    @Published var retrievedImages = [UIImage]()
+    
+    var authUser: String?
     
     init() {
         initiateUserDataLoading()
@@ -46,6 +50,7 @@ class AccountViewModel: ObservableObject {
         Task {
             do {
                 let authDataResult = try AuthenticationManager.shared.authenticatedUser()
+                self.authUser = authDataResult.uid
                 
                 guard let user = try? await UserManager.shared.getUser(userId: authDataResult.uid) else {
                     throw AppError.unauthorized

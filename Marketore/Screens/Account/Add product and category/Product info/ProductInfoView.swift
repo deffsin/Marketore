@@ -41,6 +41,10 @@ struct ProductInfoView: View {
                     }
                     
                     imagePickerButton()
+                    
+                    if viewModel.selectedImage != nil {
+                        imageView()
+                    }
                                                             
                     styledButton()
                         .padding(.top, 70)
@@ -202,6 +206,12 @@ struct ProductInfoView: View {
             Text("Select image")
                 .font(.system(size: 15))
         }
+    }
+    
+    func imageView() -> some View {
+        Image(uiImage: viewModel.selectedImage!)
+            .resizable()
+            .frame(width: 50, height: 50)
     }
     
     func styledButton() -> some View {

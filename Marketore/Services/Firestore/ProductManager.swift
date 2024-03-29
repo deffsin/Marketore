@@ -30,7 +30,7 @@ class ProductManager: ObservableObject {
         }
         
         let storageRef = Storage.storage().reference()
-        let path = "images/products/\(id).jpg"
+        let path = "images/products/\(UUID().uuidString).jpg"
         let fileRef = storageRef.child(path)
         
         fileRef.putData(imageData, metadata: nil) { [weak self] metadata, error in
