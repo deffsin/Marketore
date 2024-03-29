@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MarketView: View {
-    @ObservedObject var viewModel: MarketViewModel
+    @StateObject var viewModel: MarketViewModel
     
     @State private var scrollOffset: CGFloat = 0
     
@@ -115,7 +115,7 @@ struct MarketView: View {
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 10)], spacing: 10) {
                 if let products = viewModel.allProducts {
                     ForEach(products, id: \.productId) { item in
-                        NavigationLink(destination: MarketNavigation.detail(productId: item.productId, title: item.title, description: item.description, price: item.price, location: item.location, contact: item.contact)) {
+                        NavigationLink(destination: MarketNavigation.detail(productId: item.productId, title: item.title, description: item.description, price: item.price, location: item.location, contact: item.contact, imageURL: item.url)) {
                             CellView(title: item.title, imageURL: item.url)
                         }
                     }

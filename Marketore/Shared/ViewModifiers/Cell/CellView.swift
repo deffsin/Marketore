@@ -15,25 +15,29 @@ struct CellView: View {
     @State var isLoading = true
     
     var body: some View {
-        VStack(spacing: 5) {
+        ZStack {
             if isLoading {
                 ProgressView()
                     .frame(width: 160, height: 180)
-            } else if let imageURL = imageURL {
-                Image(uiImage: retrievedImage)
-                    .resizable()
-                    .frame(width: 160, height: 180)
             } else {
-                RoundedRectangle(cornerRadius: 6, style: .continuous)
-                    .fill(.blue)
-                    .frame(width: 160, height: 180)
+                VStack(spacing: 5) {
+                    if let imageURL = imageURL {
+                        Image(uiImage: retrievedImage)
+                            .resizable()
+                            .frame(width: 160, height: 180)
+                    } else {
+                        RoundedRectangle(cornerRadius: 6, style: .continuous)
+                            .fill(.blue)
+                            .frame(width: 160, height: 180)
+                    }
+                    
+                    Text(title ?? "Title")
+                        .font(.system(size: 15))
+                        .bold()
+                        .lineLimit(1)
+                        .truncationMode(.tail)
+                }
             }
-            
-            Text(title ?? "Title")
-                .font(.system(size: 15))
-                .bold()
-                .lineLimit(1)
-                .truncationMode(.tail)
         }
         .task {
             if let _ = imageURL, isLoading {

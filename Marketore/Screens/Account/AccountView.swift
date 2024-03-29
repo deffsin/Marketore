@@ -13,11 +13,10 @@ class AppState: ObservableObject {
 
 struct AccountView: View {
     @Environment(\.colorScheme) var colorScheme
-    @ObservedObject var viewModel: AccountViewModel
+    @StateObject var viewModel: AccountViewModel
     @StateObject var appState = AppState()
     
     @State private var scrollOffset: CGFloat = 0
-    @State private var isStarFilled: Bool = false
         
     var body: some View {
         NavigationStack {
@@ -158,7 +157,7 @@ struct AccountView: View {
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 150), spacing: 10)], spacing: 10) {
                 if let products = viewModel.allProducts {
                     ForEach(products, id: \.productId) { item in
-                        NavigationLink(destination: AccountNavigation.detail(productId: item.productId, title: item.title, description: item.description, price: item.price, location: item.location, contact: item.contact)) {
+                        NavigationLink(destination: AccountNavigation.detail(productId: item.productId, title: item.title, description: item.description, price: item.price, location: item.location, contact: item.contact, imageURL: item.url)) {
                             CellView(title: item.title, imageURL: item.url)
                         }
                     }
