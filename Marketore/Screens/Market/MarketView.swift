@@ -99,7 +99,7 @@ struct MarketView: View {
                         ForEach(FilterOption.allCases, id: \.self) { option in
                             Button(option.rawValue) {
                                 Task {
-                                    try? await viewModel.filterSelected(option: option)
+                                    try? await viewModel.applyFilterAndReloadProducts(option: option)
                                 }
                             }
                         }
