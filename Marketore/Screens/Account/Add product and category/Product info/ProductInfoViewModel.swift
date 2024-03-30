@@ -43,10 +43,10 @@ class ProductInfoViewModel: ObservableObject {
     
     /// Initiation
     ///
-    func initiateSavingData() async {
+    func saveData() async {
         Task {
             if dataIsValid {
-                try? await addProductData()
+                try? await saveProductData()
             } else {
                 DispatchQueue.main.async { [weak self] in
                     self?.isShowingSnackBar = true
@@ -57,7 +57,7 @@ class ProductInfoViewModel: ObservableObject {
     }
     ///
     
-    /// Data fetching and saving below
+    /// Data fetching and saving
     ///
     func getAuthenticatedUser() {
         Task {
@@ -71,7 +71,7 @@ class ProductInfoViewModel: ObservableObject {
         }
     }
     
-    func addProductData() async throws {
+    func saveProductData() async throws {
         Task {
             do {
                 let authUser = try AuthenticationManager.shared.authenticatedUser()
