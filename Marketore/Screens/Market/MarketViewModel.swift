@@ -11,7 +11,6 @@ class MarketViewModel: ObservableObject {
     @Published private(set) var allProducts: [Product]? = nil
     @Published private(set) var users: [UserModel]? = nil
     @Published private(set) var user: UserModel? = nil
-    //@Published var showFilters: Bool = false
     @Published var selectedFilter: FilterOption? = nil
         
     init() {

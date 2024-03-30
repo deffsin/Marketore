@@ -16,28 +16,28 @@ class AccountViewModel: ObservableObject {
     @Published var selectedFilter: FilterOption? = nil
     @Published var retrievedImages = [UIImage]()
     
-    var authUser: String?
+    var authUserId: String?
     
     init() {
-        initiateUserDataLoading()
-        initiateProductLoading()
+        loadUserData()
+        loadProductsData()
     }
     
     /// Initiation
     ///
-    func initiateNavigationToAddProduct() {
+    func navigateToAddProductScreen() {
         Task {
             await navigateToAddProduct()
         }
     }
     
-    func initiateUserDataLoading() {
+    func loadUserData() {
         Task {
             try? await getUserData()
         }
     }
     
-    func initiateProductLoading() {
+    func loadProductsData() {
         Task {
             try? await getProducts()
         }
@@ -50,7 +50,7 @@ class AccountViewModel: ObservableObject {
         Task {
             do {
                 let authDataResult = try AuthenticationManager.shared.authenticatedUser()
-                self.authUser = authDataResult.uid
+                self.authUserId = authDataResult.uid
                 
                 guard let user = try? await UserManager.shared.getUser(userId: authDataResult.uid) else {
                     throw AppError.unauthorized
@@ -86,7 +86,7 @@ class AccountViewModel: ObservableObject {
         }
     }
     
-    func filterSelected(option: FilterOption) async throws {
+    func applyFilterAndReloadProducts(option: FilterOption) async throws {
         DispatchQueue.main.async {
             self.selectedFilter = option
         }

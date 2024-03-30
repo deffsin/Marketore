@@ -110,7 +110,7 @@ struct AccountView: View {
                 Spacer()
                 
                 Button(action: {
-                    viewModel.initiateNavigationToAddProduct()
+                    viewModel.navigateToAddProductScreen()
                 }) {
                     Image(systemName: "plus")
                         .resizable()
@@ -141,7 +141,7 @@ struct AccountView: View {
                         ForEach(FilterOption.allCases, id: \.self) { option in
                             Button(option.rawValue) {
                                 Task {
-                                    try? await viewModel.filterSelected(option: option)
+                                    try? await viewModel.applyFilterAndReloadProducts(option: option)
                                 }
                             }
                         }
