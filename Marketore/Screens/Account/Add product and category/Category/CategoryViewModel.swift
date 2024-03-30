@@ -8,11 +8,11 @@
 import SwiftUI
 
 class CategoryViewModel: ObservableObject, SaveDataUD {
-    @Published var selectedTag: ProductCategory?
-    @Published var isButton: Bool = false
+    @Published var selectedCategory: ProductCategory?
+    @Published var isNavigationEnabled: Bool = false
     
-    var isTagSelected: Bool {
-        return selectedTag != nil
+    var isCategorySelected: Bool {
+        return selectedCategory != nil
     }
     
     /// Initiation
@@ -24,13 +24,13 @@ class CategoryViewModel: ObservableObject, SaveDataUD {
     }
     ///
     
-    /// Data fetching and saving below
+    /// Data fetching and saving
     ///
     func saveDataAndNavigate() async throws  {
-        if let selectedTag = selectedTag {
-            UserDefaultsHelper.shared.setData(value: selectedTag.rawValue, key: .productCategory)
+        if let selectedCategory = selectedCategory {
+            UserDefaultsHelper.shared.setData(value: selectedCategory.rawValue, key: .productCategory)
             DispatchQueue.main.async {
-                self.isButton.toggle()
+                self.isNavigationEnabled.toggle()
             }
         }
     }

@@ -30,11 +30,11 @@ struct CategoryView: View {
                     .padding([.horizontal, .vertical], 10)
                 
                 TagLayout(alignment: .center, spacing: 10) {
-                    ForEach(ProductCategory.allCases, id: \.self) { tag in
-                        tagView(tag.rawValue, viewModel.selectedTag == tag ? Color(appColor: .purpleColor) : .gray)
+                    ForEach(ProductCategory.allCases, id: \.self) { category in
+                        tagView(category.rawValue, viewModel.selectedCategory == category ? Color(appColor: .purpleColor) : .gray)
                             .onTapGesture {
                                 withAnimation {
-                                    viewModel.selectedTag = tag
+                                    viewModel.selectedCategory = category
                                 }
                             }
                     }
@@ -49,7 +49,7 @@ struct CategoryView: View {
                 customNavBar()
             }
             
-            NavigationLink(destination: AccountNavigation.subcategory, isActive: $viewModel.isButton) {}
+            NavigationLink(destination: AccountNavigation.subcategory, isActive: $viewModel.isNavigationEnabled) {}
         }
     }
     
@@ -125,8 +125,8 @@ struct CategoryView: View {
                 .background(.green)
                 .cornerRadius(15)
         }
-        .disabled(!viewModel.isTagSelected)
-        .opacity(viewModel.isTagSelected ? 1 : 0.5)
+        .disabled(!viewModel.isCategorySelected)
+        .opacity(viewModel.isCategorySelected ? 1 : 0.5)
     }
 }
 
