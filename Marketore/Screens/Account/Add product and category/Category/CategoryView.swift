@@ -117,7 +117,7 @@ struct CategoryView: View {
     
     func styledButton() -> some View {
         Button(action: {
-            viewModel.initiateSavingCategory()
+            viewModel.saveCategory()
         }) {
             Text("Next")
                 .frame(width: 100, height: 50)

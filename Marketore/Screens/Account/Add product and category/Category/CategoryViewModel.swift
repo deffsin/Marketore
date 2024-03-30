@@ -17,7 +17,7 @@ class CategoryViewModel: ObservableObject, SaveDataUD {
     
     /// Initiation
     ///
-    func initiateSavingCategory() {
+    func saveCategory() {
         Task {
             try? await saveDataAndNavigate()
         }
