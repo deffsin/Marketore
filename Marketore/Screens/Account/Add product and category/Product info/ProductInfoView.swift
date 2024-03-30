@@ -217,7 +217,7 @@ struct ProductInfoView: View {
     func styledButton() -> some View {
         Button(action: {
             Task {
-                await viewModel.initiateSavingData()
+                await viewModel.saveData()
             }
         }) {
             Text("Add")

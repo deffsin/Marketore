@@ -31,23 +31,23 @@ struct SubcategoryView: View {
                 
                 TagLayout(alignment: .center, spacing: 10) {
                     if viewModel.savedProductCategory == "computers" {
-                        ForEach(ComputerSubcategory.allCases) { tag in
-                            tagView(tag.rawValue, viewModel.selectedTag == tag.rawValue ? Color(appColor: .purpleColor) : .gray)
+                        ForEach(ComputerSubcategory.allCases) { category in
+                            tagView(category.rawValue, viewModel.selectedCategory == category.rawValue ? Color(appColor: .purpleColor) : .gray)
                                 .onTapGesture {
                                     withAnimation {
-                                        viewModel.selectedTag = tag.rawValue
+                                        viewModel.selectedCategory = category.rawValue
                                     }
-                                    print("\(String(describing: viewModel.selectedTag))")
+                                    print("\(String(describing: viewModel.selectedCategory))")
                                 }
                         }
                     } else if viewModel.savedProductCategory == "phones" {
                         ForEach(PhoneSubcategory.allCases) { tag in
-                            tagView(tag.rawValue, viewModel.selectedTag == tag.rawValue ? Color(appColor: .purpleColor) : .gray)
+                            tagView(tag.rawValue, viewModel.selectedCategory == tag.rawValue ? Color(appColor: .purpleColor) : .gray)
                                 .onTapGesture {
                                     withAnimation {
-                                        viewModel.selectedTag = tag.rawValue
+                                        viewModel.selectedCategory = tag.rawValue
                                     }
-                                    print("\(String(describing: viewModel.selectedTag))")                                }
+                                    print("\(String(describing: viewModel.selectedCategory))")                                }
                         }
                     }
                 }
@@ -61,7 +61,7 @@ struct SubcategoryView: View {
                 customNavBar()
             }
             
-            NavigationLink(destination: AccountNavigation.productInfo, isActive: $viewModel.isButton) {}
+            NavigationLink(destination: AccountNavigation.productInfo, isActive: $viewModel.isNavigationEnabled) {}
         }
     }
     
@@ -129,7 +129,7 @@ struct SubcategoryView: View {
     
     func styledButton() -> some View {
         Button(action: {
-            viewModel.initiateSavingSubcategory()
+            viewModel.saveCategory()
         }) {
             Text("Next")
                 .frame(width: 100, height: 50)
@@ -137,8 +137,8 @@ struct SubcategoryView: View {
                 .background(.green)
                 .cornerRadius(15)
         }
-        .disabled(!viewModel.isTagSelected)
-        .opacity(viewModel.isTagSelected ? 1 : 0.5)
+        .disabled(!viewModel.isCategorySelected)
+        .opacity(viewModel.isCategorySelected ? 1 : 0.5)
     }
 }
 

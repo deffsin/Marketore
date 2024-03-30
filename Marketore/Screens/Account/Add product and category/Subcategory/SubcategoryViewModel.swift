@@ -9,11 +9,11 @@ import SwiftUI
 
 class SubcategoryViewModel: ObservableObject, SaveDataUD, GetDataUD {
     @Published var savedProductCategory: String?
-    @Published var selectedTag: String?
-    @Published var isButton: Bool = false
-        
-    var isTagSelected: Bool {
-        return selectedTag != nil
+    @Published var selectedCategory: String?
+    @Published var isNavigationEnabled: Bool = false
+    
+    var isCategorySelected: Bool {
+        return selectedCategory != nil
     }
     
     init() {
@@ -22,7 +22,7 @@ class SubcategoryViewModel: ObservableObject, SaveDataUD, GetDataUD {
     
     /// Initiation
     ///
-    func initiateSavingSubcategory() {
+    func saveCategory() {
         Task {
             try? await saveDataAndNavigate()
         }
@@ -32,10 +32,10 @@ class SubcategoryViewModel: ObservableObject, SaveDataUD, GetDataUD {
     /// Data fetching and saving below
     ///
     func saveDataAndNavigate() async throws {
-        if let selectedTag = selectedTag {
-            UserDefaultsHelper.shared.setData(value: selectedTag, key: .productSubcategory)
+        if let selectedCategory = selectedCategory {
+            UserDefaultsHelper.shared.setData(value: selectedCategory, key: .productSubcategory)
             DispatchQueue.main.async {
-                self.isButton.toggle()
+                self.isNavigationEnabled.toggle()
             }
         }
     }

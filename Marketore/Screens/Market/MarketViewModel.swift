@@ -11,31 +11,30 @@ class MarketViewModel: ObservableObject {
     @Published private(set) var allProducts: [Product]? = nil
     @Published private(set) var users: [UserModel]? = nil
     @Published private(set) var user: UserModel? = nil
-    @Published var showFilters: Bool = false
     @Published var selectedFilter: FilterOption? = nil
         
     init() {
-        initiateUserDataLoading()
-        initiateUsersDataLoading()
+        loadUserData()
+        loadUsersData()
     }
     
     /// Initiation
     ///
-    func initiateUserDataLoading() {
+    func loadUserData() {
         Task {
             try? await getUserData()
         }
     }
     
-    func initiateUsersDataLoading() {
+    func loadUsersData() {
         Task {
             try? await getUsersData() {
-                self.initiateProductLoading()
+                self.loadProductsData()
             }
         }
     }
     
-    func initiateProductLoading() {
+    func loadProductsData() {
         Task {
             try? await getProducts()
         }
@@ -98,7 +97,7 @@ class MarketViewModel: ObservableObject {
     }
     ///
     
-    func filterSelected(option: FilterOption) async throws {
+    func applyFilterAndReloadProducts(option: FilterOption) async throws {
         DispatchQueue.main.async {
             self.selectedFilter = option
         }
