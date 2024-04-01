@@ -11,10 +11,12 @@ import FirebaseStorage
 class AccountViewModel: ObservableObject {
     @Published private(set) var allProducts: [Product]? = nil
     @Published private(set) var user: UserModel? = nil
-    @Published var isButton: Bool = false
-    @Published var showFilters: Bool = false
     @Published var selectedFilter: FilterOption? = nil
     @Published var retrievedImages = [UIImage]()
+    
+    @Published var showFilters: Bool = false
+    @Published var showBookmarksButton: Bool = false
+    @Published var showAddProductButton: Bool = false
     
     var authUserId: String?
     
@@ -23,14 +25,8 @@ class AccountViewModel: ObservableObject {
         loadProductsData()
     }
     
-    /// Initiation
+    /// Initialization
     ///
-    func navigateToAddProductScreen() {
-        Task {
-            await navigateToAddProduct()
-        }
-    }
-    
     func loadUserData() {
         Task {
             try? await getUserData()
@@ -80,9 +76,30 @@ class AccountViewModel: ObservableObject {
     }
     ///
     
+    /// Navigation
+    ///
+    func navigateToAddProductScreen() {
+        Task {
+            await navigateToAddProduct()
+        }
+    }
+    
+    func navigateToBookmarksScreen() {
+        Task {
+            await navigateToBookmarks()
+        }
+    }
+    ///
+    
     func navigateToAddProduct() async {
         DispatchQueue.main.async {
-            self.isButton.toggle()
+            self.showAddProductButton.toggle()
+        }
+    }
+    
+    func navigateToBookmarks() async {
+        DispatchQueue.main.async {
+            self.showBookmarksButton.toggle()
         }
     }
     

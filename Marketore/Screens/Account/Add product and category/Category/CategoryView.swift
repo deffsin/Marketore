@@ -66,8 +66,8 @@ struct CategoryView: View {
                         dismiss()
                     }) {
                         HStack(spacing: 5) {
-                            Image(systemName: "chevron.left")
-                            Text("Back")
+                            Image(systemName: "chevron.down")
+                            Text("Close")
                             Spacer()
                         }
                     }

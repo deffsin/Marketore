@@ -75,10 +75,9 @@ struct ProductInfoView: View {
                     }
                 }
             }
-            .onChange(of: viewModel.isButton) { state in
-                print("\(state)")
-                if state {
-                    appState.isFullScreenCoverShown = false
+            .onChange(of: viewModel.isButton) {
+                if viewModel.isButton {
+                    appState.isAddProductFullScreenCoverShown = false
                 }
             }
             .onChange(of: viewModel.priceString) { newValue in

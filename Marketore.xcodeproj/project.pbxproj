@@ -84,6 +84,8 @@
 		15FE37AB2B6BBE2700E8E2BF /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FE37AA2B6BBE2700E8E2BF /* CategoryViewModel.swift */; };
 		15FE37AD2B6BC19400E8E2BF /* TagLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FE37AC2B6BC19300E8E2BF /* TagLayout.swift */; };
 		15FE37AF2B6BEA6300E8E2BF /* ProductCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FE37AE2B6BEA6300E8E2BF /* ProductCategories.swift */; };
+		15FE71732BBABB070006D1C9 /* BookmarksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FE71722BBABB070006D1C9 /* BookmarksView.swift */; };
+		15FE71752BBABB120006D1C9 /* BookmarksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FE71742BBABB120006D1C9 /* BookmarksViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +150,8 @@
 		15FE37AA2B6BBE2700E8E2BF /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		15FE37AC2B6BC19300E8E2BF /* TagLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagLayout.swift; sourceTree = "<group>"; };
 		15FE37AE2B6BEA6300E8E2BF /* ProductCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCategories.swift; sourceTree = "<group>"; };
+		15FE71722BBABB070006D1C9 /* BookmarksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksView.swift; sourceTree = "<group>"; };
+		15FE71742BBABB120006D1C9 /* BookmarksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -377,6 +381,7 @@
 				15893D4A2B66D065006BD88C /* AccountView.swift */,
 				15893D4C2B66D070006BD88C /* AccountViewModel.swift */,
 				15FE37A52B6BBDDB00E8E2BF /* Add product and category */,
+				15FE71712BBABA810006D1C9 /* Bookmarks */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -460,6 +465,15 @@
 				15C05B792B77B59000D7EE77 /* Product info */,
 			);
 			path = "Add product and category";
+			sourceTree = "<group>";
+		};
+		15FE71712BBABA810006D1C9 /* Bookmarks */ = {
+			isa = PBXGroup;
+			children = (
+				15FE71722BBABB070006D1C9 /* BookmarksView.swift */,
+				15FE71742BBABB120006D1C9 /* BookmarksViewModel.swift */,
+			);
+			path = Bookmarks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -606,11 +620,13 @@
 				1599A4722B751ACF004B76F6 /* SubcategoryViewModel.swift in Sources */,
 				159ED9BF2BA3777400E6D57D /* FilterOption.swift in Sources */,
 				15AF5FDC2B867422007173AF /* Product.swift in Sources */,
+				15FE71752BBABB120006D1C9 /* BookmarksViewModel.swift in Sources */,
 				1503FC542B9355BD0074B6BB /* AccountNavigation.swift in Sources */,
 				1503FC572B95CAFE0074B6BB /* SnackBar.swift in Sources */,
 				1599A4742B751ADA004B76F6 /* SubcategoryView.swift in Sources */,
 				15595EB12B9DBFF500B0D5DF /* AccountCellDetailView.swift in Sources */,
 				1520DC642B65352200C9EDAF /* UserManager.swift in Sources */,
+				15FE71732BBABB070006D1C9 /* BookmarksView.swift in Sources */,
 				15893D412B66CD28006BD88C /* TabBarView.swift in Sources */,
 				1520DC662B65352200C9EDAF /* AuthenticationManager.swift in Sources */,
 				1520DC1E2B652BE600C9EDAF /* AuthenticationViewModel.swift in Sources */,

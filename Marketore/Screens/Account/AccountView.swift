@@ -8,7 +8,8 @@
 import SwiftUI
 
 class AppState: ObservableObject {
-    @Published var isFullScreenCoverShown: Bool = false
+    @Published var isAddProductFullScreenCoverShown: Bool = false
+    @Published var isBookmarksFullScreenCoverShown: Bool = false
 }
 
 struct AccountView: View {
@@ -71,13 +72,22 @@ struct AccountView: View {
                 customNavBar(offset: scrollOffset)
             }
         }
-        .fullScreenCover(isPresented: $appState.isFullScreenCoverShown) {
+        .fullScreenCover(isPresented: $appState.isAddProductFullScreenCoverShown) {
             AccountNavigation.category
                 .environmentObject(appState)
         }
-        .onChange(of: viewModel.isButton) { state in
-            if state {
-                appState.isFullScreenCoverShown = true
+        .fullScreenCover(isPresented: $appState.isBookmarksFullScreenCoverShown) {
+            AccountNavigation.bookmarks
+                .environmentObject(appState)
+        }
+        .onChange(of: viewModel.showAddProductButton) {
+            if viewModel.showAddProductButton {
+                appState.isAddProductFullScreenCoverShown = true
+            }
+        }
+        .onChange(of: viewModel.showBookmarksButton) {
+            if viewModel.showBookmarksButton {
+                appState.isBookmarksFullScreenCoverShown = true
             }
         }
     }
@@ -95,7 +105,9 @@ struct AccountView: View {
             .ignoresSafeArea(.all)
             
             HStack {
-                Button(action: { }) {
+                Button(action: {
+                    viewModel.navigateToBookmarksScreen()
+                }) {
                     Image(systemName: "bookmark")
                         .resizable()
                         .padding(9)
