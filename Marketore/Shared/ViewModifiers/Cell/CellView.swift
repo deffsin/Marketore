@@ -25,10 +25,12 @@ struct CellView: View {
                         Image(uiImage: retrievedImage)
                             .resizable()
                             .frame(width: 160, height: 180)
+                            .cornerRadius(10)
                     } else {
                         RoundedRectangle(cornerRadius: 6, style: .continuous)
                             .fill(.blue)
                             .frame(width: 160, height: 180)
+                            .cornerRadius(10)
                     }
                     
                     Text(title ?? "Title")
