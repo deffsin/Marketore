@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// .capitalized
 enum ProductCategory: String, CaseIterable, Identifiable {
     case computers = "computers"
     case phones = "phones"

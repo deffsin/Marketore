@@ -42,9 +42,6 @@ struct BookmarksView: View {
                     self.scrollOffset = offset
                 }
             }
-            // .refreshable {
-            //     try? await viewModel.getProducts()
-            // }
             .overlay {
                 customNavBar(offset: scrollOffset)
             }
@@ -67,25 +64,21 @@ struct BookmarksView: View {
             HStack {
                 Button(action: {
                     dismiss()
+                    
                 }) {
                     HStack(spacing: 5) {
                         Image(systemName: "chevron.down")
                         Text("Close")
-                        Spacer()
                     }
                 }
                 .font(.system(size: 17))
                 
                 Spacer()
-                
-                Text("Bookmarks")
-                    
-                Spacer()
             }
             .font(.title)
             .foregroundStyle(.white)
             .padding(.horizontal, 15)
-            .padding(.vertical, 7)
+            .padding(.vertical, 15)
         }
         .frame(height: 35)
         .frame(maxHeight: .infinity, alignment: .top)
