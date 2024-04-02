@@ -63,7 +63,7 @@ class ProductManager: ObservableObject {
                             Product.CodingKeys.location.rawValue: location,
                             Product.CodingKeys.contact.rawValue: contact,
                             Product.CodingKeys.dataCreated.rawValue: Date(),
-                            Product.CodingKeys.url.rawValue: path
+                            Product.CodingKeys.url.rawValue: downloadURL.absoluteString // previosly i was saving a path, but now i need to get a URL for use with kingfisher
                         ]
                         
                         try await document.setData(data, merge: false)
