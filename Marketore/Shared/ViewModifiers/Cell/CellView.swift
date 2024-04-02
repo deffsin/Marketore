@@ -10,10 +10,9 @@ import FirebaseStorage
 import Kingfisher
 
 struct CellView: View {
+    @State var productId: String
     @State var title: String?
     @State var imageURL: String?
-    @State var retrievedImage = UIImage()
-    @State var isLoading = true
     
     var body: some View {
         ZStack {
@@ -21,6 +20,12 @@ struct CellView: View {
                 if let imageURL = imageURL {
                     KFImage(URL(string: imageURL))
                         .resizable()
+                        .onSuccess { _ in
+                            print("Image with product ID: \(String(describing: productId)) has been loaded")
+                        }
+                        .onFailure { _ in
+                            print("Image with product ID: \(String(describing: productId)) can't be loaded")
+                        }
                         .frame(width: 160, height: 180)
                         .cornerRadius(10)
                     
@@ -33,8 +38,4 @@ struct CellView: View {
             }
         }
     }
-}
-
-#Preview {
-    CellView()
 }

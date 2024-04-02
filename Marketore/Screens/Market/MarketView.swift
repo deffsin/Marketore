@@ -116,7 +116,7 @@ struct MarketView: View {
                 if let products = viewModel.allProducts {
                     ForEach(products, id: \.productId) { item in
                         NavigationLink(destination: MarketNavigation.detail(productId: item.productId, title: item.title, description: item.description, price: item.price, location: item.location, contact: item.contact, imageURL: item.url)) {
-                            CellView(title: item.title, imageURL: item.url)
+                            CellView(productId: item.productId, title: item.title, imageURL: item.url)
                         }
                     }
                     .shadow(radius: 10)
