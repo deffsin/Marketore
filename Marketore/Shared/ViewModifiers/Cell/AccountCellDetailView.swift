@@ -7,7 +7,7 @@
 
 import SwiftUI
 import FirebaseStorage
-// test
+import Kingfisher
 
 struct AccountCellDetailView: View {
     @Environment(\.dismiss) var dismiss
@@ -19,10 +19,8 @@ struct AccountCellDetailView: View {
     @State var location: String?
     @State var contact: String?
     @State var imageURL: String?
-    @State var retrievedImage = UIImage()
     
     @State var removeMarketplaceItemAlert: Bool = false
-    @State var isLoading = true
     
     var body: some View {
         ZStack {
@@ -41,11 +39,6 @@ struct AccountCellDetailView: View {
                 VStack(spacing: 8) {
                     buttonsAboveTheImage()
                     
-                    if isLoading {
-                        ProgressView()
-                            .frame(width: 220, height: 220)
-                            .tint(.white)
-                    } else {
                         imageView()
                         
                         titleView()
@@ -55,29 +48,18 @@ struct AccountCellDetailView: View {
                             .overlay(.white)
                         
                         additionalInfoView()
-                    }
-                    
+
                     Spacer()
                 }
             }
         }
         .foregroundStyle(.white)
-        .task {
-            if let _ = imageURL, isLoading {
-                retrievePhotos()
-            }
-        }
     }
     
     func imageView() -> some View {
         ZStack {
-            if let _ = imageURL {
-                Image(uiImage: retrievedImage)
-                    .resizable()
-            } else {
-                RoundedRectangle(cornerRadius: 6, style: .continuous)
-                    .fill(.blue)
-            }
+            KFImage(URL(string: imageURL!))
+                .resizable()
         }
         .frame(width: .infinity)
         .frame(height: 350)
@@ -193,27 +175,6 @@ struct AccountCellDetailView: View {
             deleteButtonView()
         }
         .padding(.horizontal, 15)
-    }
-    
-    // this is redundant to create a view model for this function, therefore i use this func here
-    func retrievePhotos() {
-        isLoading = true
-        let storageRef = Storage.storage().reference()
-        
-        guard let path = imageURL else { return }
-        
-        let fileRef = storageRef.child(path)
-        
-        fileRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
-            DispatchQueue.main.async {
-                if let imageData = data, error == nil {
-                    self.retrievedImage = UIImage(data: imageData) ?? UIImage()
-                    self.isLoading = false
-                } else {
-                    self.isLoading = false
-                }
-            }
-        }
     }
 }
 
