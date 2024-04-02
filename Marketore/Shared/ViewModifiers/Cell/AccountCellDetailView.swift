@@ -186,7 +186,7 @@ extension AccountCellDetailView {
     func removeItemFromMarketplace(productId: String, completion: @escaping () -> Void) {
         Task {
             let authDataResult = try AuthenticationManager.shared.authenticatedUser()
-            try? await ProductManager.shared.removeProduct(userId: authDataResult.uid, productId: productId)
+            try? await ProductManager.shared.removeProduct(userId: authDataResult.uid, productId: productId, imageURL: imageURL!)
             
             DispatchQueue.main.async {
                 completion()

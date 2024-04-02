@@ -10,7 +10,6 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import FirebaseStorage
 
-
 class ProductManager: ObservableObject {
     static let shared = ProductManager()
     private init() {}
@@ -97,7 +96,21 @@ class ProductManager: ObservableObject {
         }
     }
     
-    func removeProduct(userId: String, productId: String) async throws {
+    func removeImageFromStorage(imageURL: String) {
+        let storage = Storage.storage()
+        let storageRef = storage.reference(forURL: imageURL)
+
+        storageRef.delete { error in
+            if let error = error {
+                print(error)
+            } else {
+                print("File \(imageURL) deleted successfully")
+            }
+        }
+    }
+    
+    func removeProduct(userId: String, productId: String, imageURL: String) async throws {
         try await productDocument(userId: userId, productId: productId).delete()
+        removeImageFromStorage(imageURL: imageURL)
     }
 }
