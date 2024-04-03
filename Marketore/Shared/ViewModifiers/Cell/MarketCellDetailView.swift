@@ -12,16 +12,19 @@ import Kingfisher
 struct MarketCellDetailView: View {
     @Environment(\.dismiss) var dismiss
     
-    @State var productId: String?
+    @State var productId: String
+    @State var productUserId: String // user ID of the user who owns the product
     @State var title: String?
     @State var description: String?
     @State var price: Int?
     @State var location: String?
     @State var contact: String?
-    
     @State var imageURL: String?
     
-    @State var removeMarketplaceItemAlert: Bool = false
+    /// delete it later?????
+    @State var isMyProduct: Bool = false // if this is not user's product, it shouldn't be showed up
+    @State var isBookmark: Bool = false
+    ///
     
     var body: some View {
         ZStack {
@@ -38,7 +41,7 @@ struct MarketCellDetailView: View {
             
             ScrollView {
                 VStack(spacing: 8) {
-                    backButtonView()
+                    buttonsAboveTheImage()
                     
                     imageView()
                     
@@ -145,6 +148,49 @@ struct MarketCellDetailView: View {
             }
             Spacer()
         }
+    }
+    
+    func bookmarkButtonView() -> some View {
+        HStack {
+            Button(action: {
+                saveBookmarktData {
+                    isBookmark.toggle()
+                }
+            }) {
+                Image(systemName: isBookmark ? "bookmark.fill" : "bookmark")
+                    .font(.system(size: 18))
+                    .foregroundStyle(.black)
+                    .padding(7)
+                    .background(Color(appColor: .whiteColor))
+                    .clipShape(Circle())
+                    .opacity(0.9)
+            }
+        }
+    }
+    
+    func buttonsAboveTheImage() -> some View {
+        HStack {
+            backButtonView()
+            
+            Spacer()
+            
+            bookmarkButtonView()
+        }
         .padding(.horizontal, 15)
+    }
+}
+
+extension MarketCellDetailView {
+    func saveBookmarktData(completion: @escaping () -> Void) {
+        Task {
+            let authDataResult = try AuthenticationManager.shared.authenticatedUser()
+            
+            try? await BookmarkManager.shared.saveBookmark(productId: productId, userId: authDataResult.uid, productUserId: productUserId)
+            // updateUserProductStatus()
+            
+            DispatchQueue.main.async {
+                completion()
+            }
+        }
     }
 }

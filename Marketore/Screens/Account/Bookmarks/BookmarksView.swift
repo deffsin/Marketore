@@ -47,6 +47,9 @@ struct BookmarksView: View {
             }
         }
         .foregroundStyle(.white)
+        .onAppear {
+            viewModel.checkBookmarkExists()
+        }
     }
     
     func customNavBar(offset: CGFloat) -> some View {
