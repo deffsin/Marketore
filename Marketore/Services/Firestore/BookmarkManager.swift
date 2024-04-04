@@ -46,7 +46,6 @@ class BookmarkManager: ObservableObject {
             let snapshot = try await bookmarkCollection(userId: userId).getDocuments()
             let bookmarks = snapshot.documents.compactMap {try? $0.data(as: Bookmark.self) }
             
-            print(bookmarks)
             return bookmarks
         } catch {
             throw AppError.connectionFailed

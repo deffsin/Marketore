@@ -47,8 +47,12 @@ struct BookmarksView: View {
             }
         }
         .foregroundStyle(.white)
-        .onAppear {
-            viewModel.checkBookmarkExists()
+        .task {
+            viewModel.getUsersData {
+                viewModel.getBookmarksData {
+                    viewModel.findProductsInBookmarks()
+                }
+            }
         }
     }
     
